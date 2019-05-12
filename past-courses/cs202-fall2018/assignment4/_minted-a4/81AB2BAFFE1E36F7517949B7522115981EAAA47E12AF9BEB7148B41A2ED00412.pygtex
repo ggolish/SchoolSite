@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{    Adds two numbers together.}
+\PYG{c+cm}{    Params: takes two numbers to be added together}
+\PYG{c+cm}{    Return: returns the sum of the two parameters}
+\PYG{c+cm}{*/}
+\PYG{k+kt}{int} \PYG{n+nf}{sum}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{x} \PYG{o}{+} \PYG{n}{y}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{amsmath}
+\usepackage{pifont}
+\usepackage{minted}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\chead{CS 202 - Bit Operations Exercises}
+
+\begin{document}
+
+\begin{enumerate}
+  \item Write a function called \texttt{count1} that takes an \texttt{unsigned
+    char} as an argument and returns the number of ones found in the binary
+    representation of the variable.
+  \item Write a function called \texttt{set} that takes two arguments: an
+    \texttt{unsigned char}, $x$, and an \texttt{int}, $i$. Set
+    the bit at index $i$ of $x$ to one.
+  \item Write a function called \texttt{clear} that takes two arguments: an
+    \texttt{unsigned char}, $x$, and an \texttt{int}, $i$. Set
+    the bit at index $i$ of $x$ to zero.
+  \item Write a function called \texttt{print\_bin} that takes an \texttt{int}
+    as an argument and prints its binary representation to \texttt{stdout}.
+  \item Write a function called \texttt{is\_odd} that takes an \texttt{int},
+    $x$, as an argument. Return $1$ if $x$ is odd, and return $0$ if $x$ is
+    even. Do not use the modulus operator.
+  \item Write a function called \texttt{abs} that takes an
+    \texttt{int}, $x$, as an argument. If $x$ is negative, perform the twos compliment operation on
+    the integer and return the result. Otherwise, return $x$.
+  \item Write a function called \texttt{swap\_bytes} that takes an
+    \texttt{unsigned short}, $x$, as a parameter. Swap the two bytes in $x$ and
+    return the result. For example: \texttt{swap\_bytes}(0x4567) returns
+    0x6745.
+\end{enumerate}
+
+\end{document}

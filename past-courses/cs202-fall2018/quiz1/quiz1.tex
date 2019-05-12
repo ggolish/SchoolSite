@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{amsmath}
+\usepackage{pifont}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\chead{CS 202 - Quiz 1 (15 points)}
+
+\begin{document}
+
+\noindent
+\textbf{Part 1} For each scenario listed below, list the UNIX commands you
+would use to solve the problem. Number each command, starting at one.
+\begin{enumerate}
+  \item (2.5 points) Assume you have two directories, \texttt{dir1} and \texttt{dir2}, in
+    your home directory. Change your current directory to \texttt{dir1}. Remove
+    all files and subdirectories within this directory that begin with the
+    letter \texttt{a}. Move all files in this directory that begin with the
+    letter \texttt{b} into the \texttt{dir2} directory.
+  \item (2.5 points) Create a directory in your home directory called \texttt{secret-files}.
+    Copy all files in the directory \texttt{/u1/junk/cs202/dir1} that begin with
+    the word \texttt{secret} into your newly created \texttt{secret-files}
+    directory. Change the permissions of the directory so that only you, the
+    user, have permission to read, write, and search the directory.
+\end{enumerate}
+
+\noindent
+\textbf{Part 2} For each problem below, write a complete C program that
+produces the desired output. Each program should print to \texttt{stdout}.
+Remember to use proper spacing and indentation. The program should complain if
+the input is incorrect.
+\begin{enumerate}
+  \item (5 points) Read an integer $x$, such that $100 \leq x \leq 10000$, as a
+    command line argument. Print all prime numbers $p$, such that $0 < p
+    < x$. \textit{Bonus (1 point)}: Encapsulate the code that checks for prime numbers in
+    its own function.
+  \item (5 points) Read one character at a time from \texttt{stdin}. If the
+    character is a lowercase letter, print the corresponding uppercase letter.
+    If the character is an uppercase letter, print the corresponding lowercase
+    letter. If the character is not a letter, simply print the character.
+    \textit{Bonus (1 point)}: If the character is a digit $n$, print the $n$th
+    power of 2.
+\end{enumerate}
+
+\end{document}

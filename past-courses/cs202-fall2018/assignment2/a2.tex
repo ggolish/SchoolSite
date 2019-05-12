@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{amsmath}
+\usepackage{pifont}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\chead{CS 202 - Assignment 2 (20 points)}
+
+\begin{document}
+
+\noindent
+Create a subdirectory of your home directory called \texttt{a2} and place
+within it your solutions to the problems below. Name your programs
+\texttt{p01.c}, \texttt{p02.c}, etc. Be sure to check for command line
+argument, input, and file opening errors, and display helpful error messages.
+As always, pay close attention to indentation and spacing within your programs.
+
+\begin{enumerate}
+  % Question 1
+  \item (1 point) Write a C program that prints all command line arguments, one per line.
+    Note that the first command line argument is
+    \texttt{argv[1]}. Hint: use \texttt{\%s} as format specifier in
+    \texttt{printf}.
+  % Question 2
+  \item (1 point) Write a C program that reads one integer $n$ as a command line
+    argument and prints ``Hello, World!'' $n$ times. Example output: \\ \\
+    \texttt{> ./p02 5 \\ Hello, World! \\ Hello, World! \\ Hello, World! \\ Hello, World! \\ Hello, World!}
+  % Question 3
+  \item (1 point) Write a C program that reads two integers, $n$ and $m$, as command line
+    arguments and prints integers $1 \dots n$ in steps of $m$, one per line.
+  % Question 4
+  \item (1 point) Write a C program that reads one integer $n$ as a command line argument
+    and prints $n$, $n^2$, $n^3$, $n^4$, one per line.
+  % Question 5
+  \item (2 points) Write a C program that reads one integer $n$ as a command
+    line argument and prints out all prime numbers below $n$, one per line.
+  % Question 6
+  \item (2 points) Write a C program that opens and reads a file, named as a
+    command line argument, one character at a time and counts the number of
+    non-alphabetical characters. Print the count.
+  % Question 7
+  \item (2 points) Write a C program that opens and reads a file, named as a
+    command line argument, one character at a time and prints all uppercase
+    characters found.
+  % Question 8
+  \item (2 points) Write a C program that opens and reads a file named as a
+    command line argument. Count the number of occurrences of the following
+    words:
+    \begin{itemize}
+      \item is
+      \item and
+      \item or
+    \end{itemize}
+    Print the count.
+  % Question 9
+  \item (2 points) Write a C program that opens and reads a file named as a command line
+    argument and count the number of words in the file. Print the count.
+  % Question 10
+  \item (2 points) Write a C program that reads one integer at a time from
+    \texttt{stdin} and prints the maximum and minimum integers read.
+  % Question 11
+  \item (2 points) Write a C program that reads an integer $n$ as a command
+    line argument. Print an $n \times n$ matrix of \texttt{*}'s.
+  % Question 12
+  \item (2 points) Write a C program that reads two integers $n$ and $m$ as command
+    line arguments. Print an $n \times m$ matrix of \texttt{*}'s.
+\end{enumerate}
+
+\end{document}

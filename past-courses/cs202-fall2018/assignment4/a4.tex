@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{amsmath}
+\usepackage{pifont}
+\usepackage{xcolor}
+\usepackage{minted}
+\usepackage{mdframed}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\chead{CS 202: Assignment 4 (20 points)}
+
+\begin{document}
+
+\noindent
+Create a subdirectory of your home directory called \texttt{a4}, and within it
+write a program titled \texttt{decipher.c} that satisfies the following
+requirements. The program should read a file that has been encrypted with a
+substitution cipher as a command line argument, and then perform actions in the
+following order:
+
+\begin{enumerate}
+  \item Read the entire file into a single buffer (using a dynamically
+    allocated array).
+  \item Decrypt the buffer in place using an alphabet that you guess.
+  \item Count and display the frequencies of each alphabetical character.
+  \item Read the words in \texttt{/u1/junk/cs202/a4/words.txt} into a dynamically
+    allocated array.
+  \item Using these words, count the number of English words found in the
+    decrypted message and display this count.
+  \item Output the decrypted message into a file called \texttt{guess.txt}.
+  \item (Bonus 4 points) Decipher the file \texttt{/u1/junk/cs202/a4/secret.txt}. Using 
+    the output of this program, a list of highest
+    frequency letters in the English language, and by visually inspecting the
+    contents of \texttt{guess.txt}, edit the alphabet your program uses until
+    you believe the message has been deciphered.
+\end{enumerate}
+
+\noindent
+In this program you should write five separate functions that will be used in
+the main function:
+
+\begin{enumerate}
+  \item A function to read the file into a buffer.
+  \item A function to decrypt the buffer in place.
+  \item A function to count and print the character frequencies.
+  \item A function that reads the dictionary.
+  \item A function that searches the dictionary for a word via the binary
+    search algorithm.
+\end{enumerate}
+
+\noindent
+In addition, each function definition should have a comment above it that
+describes the purpose of the function and explains the function's parameters and
+return values. A simple example of this would look like:
+
+\begin{minted}{c}
+
+/*
+    Adds two numbers together.
+    Params: takes two numbers to be added together
+    Return: returns the sum of the two parameters
+*/
+int sum(int x, int y)
+{
+    return x + y;
+}
+
+\end{minted}
+
+\noindent
+Run the \texttt{/u1/junk/cs202/a4/answer} executable to see how to format the
+output of your program.
+
+\end{document}

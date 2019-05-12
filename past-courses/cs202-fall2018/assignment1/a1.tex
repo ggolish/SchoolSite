@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{amsmath}
+\usepackage{pifont}
+\usepackage{minted}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\chead{CS 202 - ASSIGNMENT 1}
+
+\begin{document}
+
+\noindent
+Create a subdirectory of your home directory titled \texttt{aug29}. Inside,
+place your solutions to the problems listed below, naming the files
+\texttt{p01.c}, \texttt{p02.c}, etc. Your solutions are due on Wednesday,
+August 29 before class starts.
+
+\begin{enumerate}
+  % Done
+  \item (1 point) Write a C program that prints the size, as well as the minimum and
+    maximum values of the following data types:
+    \begin{itemize}
+      \item \texttt{int}
+      \item \texttt{unsigned int}
+      \item \texttt{unsigned char}
+      \item \texttt{double}
+      \item \texttt{unsigned short int}
+    \end{enumerate}
+    Direct your output to \texttt{stdout}. Hint: Read \texttt{man sizeof} and
+    investigate the \texttt{limits.h} header.
+
+  % Done
+  \item (2 points) Write a C program that reads an integer from \texttt{stdin} and prints
+    to \texttt{stdout} if it is even or odd. Hint: investigate the modulus
+    operator (\texttt{\%}).
+
+  % Done
+  \item (2 points) Write a C program that reads a character from \texttt{stdin} and prints
+    to \texttt{stdout} if it is lower case, upper case, a digit, or a special
+    character. Hint: read \texttt{man ascii}.
+
+  % Done
+  \item (3 points) Write a C program that reads three integers as command line arguments
+    and prints to \texttt{stdout} the average, minimum, and maximum of the
+    integers.
+
+  % Done
+  \item (3 points) Write a C program that reads an integer representing a number of days
+    as a command line argument. Convert the integer to weeks and years. Print
+    the days, weeks, and years to \texttt{stdout}.
+  
+  % Done
+  \item (3 points) Write a C program that reads three integers \texttt{a}, \texttt{b}, and
+    \texttt{c} as command line arguments and
+    prints to \texttt{stdout} whether both, one, or neither of \texttt{a} and
+    \texttt{b} are exactly divisible by \texttt{c}.
+
+  % Done
+  \item (3 points) Write a C program that reads both the cost and selling price of an item
+    as command line arguments. Print to \texttt{stdout} either profit or loss.
+
+  % Done
+  \item (3 points) Write a C program that accepts three command line arguments
+    representing the angles of each corner of a triangle. Print to
+    \texttt{stdout} if it is equilateral, isosceles or scalene triangle. Hint:
+    floating point numbers should be used.
+
+\end{enumerate}
+
+\end{document}
