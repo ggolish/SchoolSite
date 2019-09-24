@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html onkeydown='key(event);'>
+<head>
+ <title> Beginning animation </title>
+ <meta charset='utf-8'>
+ <style>
+  #c {
+    border: 1px solid black;
+  }
+ </style>
+ <script>
+ var x = 100, y = 100;
+ var dx = 20, dy = 10;
+
+ function key(ev) {
+   var ctx = document.getElementById("c").getContext("2d");
+   
+   ctx.clearRect(0,0,800,600);
+   ctx.strokeStyle="red";
+   ctx.fillStyle="red";
+   if (ev.keyCode == 37 && x - dx > 0) x = x - dx;
+   if (ev.keyCode == 38 && y - dy > 0) y = y - dy;
+   if (ev.keyCode == 39 && x + dx < 800) x = x + dx;
+   if (ev.keyCode == 40 && y + dy < 600) y = y + dy;
+   ctx.fillRect(x, y, 50, 50);
+ }
+ </script>
+</head>
+<body>
+  <p>Note - I have modified Steve's animate1 so that the key pressed determines which way
+    the block moves.  I used Steve's key.html program to figure out the codes.
+    Use the arrows to move the block.</p>
+ <canvas id='c' width=800 height=600></canvas>
+</body>
+</html>

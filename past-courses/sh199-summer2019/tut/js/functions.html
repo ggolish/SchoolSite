@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Functions </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+
+<h1>Functions</h1>
+<p> Functions are an abstraction.  A sequence of code that is given a name, you
+may think of them as mini or sub-programs. We make and use functions for a
+number of reasons, including:
+<ul>
+ <li> <b>Code reuse</b> - rather than writing the same code over and over, we
+   abstract the code into its own self-contained unit so we can "call" it from
+   multiple within the larger program.
+ <li> <b>Abstraction</b> - rather than thinking of a program as the whole of its
+   parts we can use functions to abstract the program away into components that
+   do "a task".  We can then think of a program in terms of its functional
+   components, which may only be a numbered in the dozens, rather than the
+   perhaps thousands of lines of code that make up those functions.  This allows
+   the program to zoom-out from the code to a higher level and makes managing
+   the complexity of a large problem much easier.
+</ul>
+
+<p>Functions in JavaScript are defined with the function keyword. Given:
+<div class=code>function foo(a, b) {
+  return a+b;
+}</div>
+</p>
+<ul>
+ <li>"<kbd>foo</kbd>" is the name of the function.
+ <li> a and b here are "arguments" or "parameters" to the function.  They are
+    variables that hold the values that are passed to the function in the same
+    order.  A function may have zero or more arguments separated by commas and
+    enclosed in ()'s.
+
+ <li> The { ... } enclose the "statements" of the function, this is the function
+    body.
+
+ <li> The statement "<kbd>return a+b;</kbd>" tells the computer to return the
+ result of a+b as this functions "value".  A return with no expression returns
+ no value.
+ <li> It is <i>called</i> or <i>invoked</i> by using it's name followed by the
+  open and closing parenthesis "(...)" with any comma separated parameters to be
+  passed to the function inside of them.  This can be done inside of any
+  <i>expression</i> or <i>statement</i>.
+ <li> Thus this function may then be used like so:
+   <div class=code>var v = foo(1, 2);</div>
+   <kbd>v</kbd> will be assigned the "return" value of foo, which is the
+   result of adding 1 (stored in <kbd>a</kbd>) and 2 (stored in <kbd>b</kbd>)
+   together.
+</ul>
+
+<h3> examples: </h3>
+<div class=code>function ma(a, b, c) {
+  return a*b + c;
+}
+var v = ma(1,2,3) + ma(3,4,5);
+    v = (1*2+3)   + (3*4+5);
+    v = 5         + 17;
+    v = 22;</div>
+
+<hr>
+<div class=code>function hello() {
+  console.log("Hello, world!");
+  console.log("Hello, world!");
+  console.log("Hello, world!");
+}</div>
+
+<p> This function just prints "<kbd>Hello, world!</kbd>" to the console log 3
+  times and does nothing else.  It does not even return a value.  This kind of
+  function is often called a <i>procedure</i>, it's used to abstract code into
+  simpler to understand bite-sized chunks or to eliminate code repetition.  It
+  would be used like so:
+
+<div class=code>// Prints out "Hello, world!" 9 times:
+hello(); hello(); hello();
+</div>
+
+<h2>Anonymous functions:</h2>
+<p> These are functions that are created without a name, they can be assigned
+    to a variable, so that it has a name.  Often they're just passed to a
+    function as a "callback" function a function that the other function uses.<br>
+  example:
+<div class=code>var add = function(a, b) { // Note that there is no name following function.
+  return a + b;
+};
+// The function is used in the normal way:
+console.log(add(1,2));</div>
+
+<h2>Variables and Scope:</h2>
+<p> The <b><i>scope</i></b> of a variable is it's visibility to various areas
+  inside the program.
+<p> Variables declared with "<kbd>var</kbd>" inside of functions are
+  <b><i>local</i></b> to the function. That is they are only visible or members
+  of the function and don't exist outside of the function.  This includes the
+  argument variables.
+<p>Variables declared outside of the function are <b><i>global</i></b> and are
+  visible inside of all functions.
+
+<div class=code>var g = 1;
+
+function foo(a, b) {
+  g = a+b;
+}
+console.log(g);		// prints out 1;
+foo(2,3);
+console.log(g);		// prints out 5;</div>
+
+</div>
+</body>
+</html>

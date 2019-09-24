@@ -1,0 +1,3 @@
+#!/bin/bash
+
+kate *.js *.html < /dev/null >& /dev/null &

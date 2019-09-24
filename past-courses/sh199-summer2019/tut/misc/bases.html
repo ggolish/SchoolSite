@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Numeric Bases </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1> Numeric bases 10, 2, 8 and 16 </h1>
+<p> A number can be thought of as a "polynomial" (meaning "many" "sums") in the
+    form:
+<div style='font-size: 120%; font-weight: bold;'>
+  N = <var>a</var><sub>n</sub>&sdot;X<sup>n</sup> +
+  <var>a</var><sub>n-1</sub></var>&sdot;X<sup>n-1</sup> + &#8943; +
+  <var>a</var><sub>1</sub>&sdot;X<sup>1</sup> +
+  <var>a</var><sub>0</sub>&sdot;X<sup>0</sup>
+</div>
+<br>
+  or:
+<div style='font-size: 120%;'>
+  <table>
+  <tr><td>     <td>n    <td>
+  <tr><td> N = <td style='font-family: serif; font-weight: bold; font-size:130%;'>&sum;<td>a<sub>i</sub>&sdot;X<sup>i</sup>
+  <tr><td>     <td>i=0  <td>
+  </table> 
+</div>
+  where:<br>
+<div style='margin-left: 20px;'>X is the base and:</div>
+<div style='margin-left: 20px;'>a<sub>n</sub>, a<sub>n-1</sub>, ... ,a<sub>0</sub>
+ are constants modulo the base</div>
+
+<h3>Base 10 numbers:</h3>
+<div style='margin-left: 20px;'> X = 10 <br>
+0 &leq; a<sub>i</sub> &leq; 9<br>
+<br>
+<table>
+ <tr><th>404  <td> = <td> 4&sdot;10<sup>2</sup> <td>+ 0&sdot;10<sup>1</sup> <td>+ 4&sdot;10<sup>0</sup> <td>
+ <tr><td>     <td> = <td> 400 <td>+ 0 <td> + 4 <td>
+ <tr><td>     <td> = <td> 404 <td> <td> <td> <td>
+ <tr><th>9261 <td> = <td> 9&sdot;10<sup>3</sup> <td>+ 2&sdot;10<sup>2</sup> <td>+ 6&sdot;10<sup>1</sup> <td>+ 1&sdot;10<sup>0</sup>
+ <tr><td>     <td> = <td> 9000 <td>+ 200 <td>+ 60 <td>+ 1
+ <tr><td>     <td> = <td> 9261 <td><td><td>
+</table>
+<br>
+<table>
+ <tr><th colspan=8> Powers of 10:
+ <tr><td> 10<sup>0</sup><td>=1	<td style='width:20px;'><td>10<sup>3</sup>	<td>=1000	<td style='width:20px;'><td>10<sup>6</sup><td>=a million
+ <tr><td> 10<sup>1</sup><td>=10	<td><td>10<sup>4</sup>	<td>=10000	<td><td>10<sup>9</sup>	<td>=a billion
+ <tr><td> 10<sup>2</sup><td>=100<td><td>10<sup>5</sup>	<td>=100000	<td><td>10<sup>12</sup>	<td>=a trillion
+</table>
+</div>
+
+<h3>Base 2 numbers (binary):</h3>
+<div style='margin-left: 20px;'> X = 2 <br>
+0 &leq; a<sub>i</sub> &leq; 1<br>
+<br>
+<table>
+ <tr><th> 100101 <td> = <td>1&sdot;2<sup>5</sup> <td>+ 0&sdot;2<sup>4</sup> <td>+ 0&sdot;2<sup>3</sup> <td>+ 1&sdot;2<sup>2</sup> <td>+ 0&sdot;2<sup>1</sup> <td>+ 1&sdot;2<sup>0</sup>
+ <tr><td>        <td> = <td>32 <td>+ 0 <td>+ 0 <td>+ 4 <td>+ 0 <td>+ 1
+ <tr><td>        <td> = <td>37 <td><td><td><td><td>
+</table>
+<br>
+<table>
+ <tr><th colspan=11>  Powers of 2:
+ <tr><td> 2<sup>=0</sup><td>=1	<td style='width:20px;'><td>2<sup>4</sup>	<td>=16	<td style='width:20px;'><td>2<sup>8</sup><td>=256<td style='width:20px;'><td>2<sup>12</sup><td>=4096
+ <tr><td> 2<sup>=1</sup><td>=2	<td><td>2<sup>5</sup>	<td>=32	<td><td>2<sup>9</sup>	<td>=512		<td><td>2<sup>13</sup>	<td>=8192
+ <tr><td> 2<sup>=2</sup><td>=4	<td><td>2<sup>6</sup>	<td>=64	<td><td>2<sup>10</sup>	<td>=1024	<td><td>2<sup>14</sup>	<td>=16384
+ <tr><td> 2<sup>=3</sup><td>=8	<td><td>2<sup>7</sup>	<td>=128	<td><td>2<sup>11</sup>	<td>=2048	<td><td>2<sup>15</sup>	<td>=32768
+</table>
+<br>
+- Binary numbers are often prefixed with a <b>0b</b> to indicate that is a binary number.<br>
+
+  << Convert some binary numbers to base 10.>> <br>
+</div>
+
+<h3>Base 8 (Octal):</h3>
+<div style='margin-left: 20px;'> X = 8<br>
+ 0 &leq; a<sub>i</sub> &leq; 7<br>
+<br>
+<table>
+ <tr><th> 755 <td> = <td> 7&sdot;8<sup>2</sup> + 5&sdot;8<sup>1</sup> + 5&sdot;8<sup>0</sup>
+</table>
+<br>
+<table>
+ <tr><th colspan=5>  Powers of 8:
+ <tr><td> 8<sup>0</sup>	<td>=1	<td style='width:20px;'><td>8<sup>3</sup><td>=512
+ <tr><td> 8<sup>1</sup>	<td>=8	<td><td>8<sup>4</sup><td>=4096
+ <tr><td> 8<sup>2</sup>	<td>=64	<td><td>8<sup>5</sup><td>=32768
+</table>
+<br>
+- An octal number represents a 3 digit binary number.<br>
+- Usually prefixed with a leading <b>0</b> to indicate octal.<br>
+
+</div>
+
+<h3>Base 16 (Hexadecimal):</h3>
+<div style='margin-left: 20px;'> X = 16<br>
+ 0 &leq; a<sub>i</sub> &leq; 15<br>
+ We use a-f/A-F to represent the numbers 10-15<br>
+<br>
+<table>
+ <tr><th> FC65 <td> = <td> 15&sdot;16<sup>3</sup> <td>+ 12&sdot;16<sup>2</sup> <td>+ 6&sdot;16<sup>1</sup> <td>+ 5&sdot;16<sup>0</sup>
+ <tr><td>      <td> = <td> 61140   <td>+ 3072    <td>+ 96   <td>+ 5
+ <tr><td>      <td> = <td> 64613  <td><td><td>
+</table>
+<br>
+<table>
+ <tr><th colspan=5>  Powers of 16:
+ <tr><td> 16<sup>0</sup><td>=1	<td style='width:20px;'><td>16<sup>3</sup><td>=4096
+ <tr><td> 16<sup>1</sup><td>=16	<td>	<td>16<sup>4</sup><td>=65536
+ <tr><td> 16<sup>2</sup><td>=256<td>	<td>16<sup>5</sup><td>=1048576
+</table>
+<br>
+- A hex number represents a 4 digit binary number.<br>
+- Often prefixed with a leading <b>0x</b> to indicate hexadecimal.<br>
+
+</div>
+
+
+</div>
+</body>
+</html>

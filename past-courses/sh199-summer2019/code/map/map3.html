@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset='utf-8'>
+ <title> Map </title>
+ <style>
+ #map { border: 1px solid black; }
+ </style>
+</head>
+<body onkeydown='kdown(event);' onkeyup='kup(event);'>
+<canvas id='map' width=1024 height=768></canvas>
+<script>
+var ctx = document.getElementById("map").getContext("2d");
+var _tilesize = 24, _dx = 0, _dy = 0;
+
+
+var _resources = 0;
+function startgame(map) {
+  console.log(_resources);
+  if (++_resources < 3) return;
+  _map.draw();
+  _man.draw();
+  setTimeout(update,16);
+}
+
+
+var _man = {
+  img : new Image(),
+  x : _tilesize,
+  y : _tilesize,
+  vx : 1024/2,
+  vy : 768/2,
+
+  init : function() {
+    this.img.src = "img/man.png";
+    this.img.onload = startgame;
+  },
+  draw : function() {
+    console.log("draw man");
+    ctx.drawImage(this.img, this.vx, this.vy, _map.tilesize, _map.tilesize);
+  },
+  canmove : function(x, y) {
+    x = Math.floor(x/_tilesize);
+    y = Math.floor(y/_tilesize);
+    if (_map.map[y][x] == '.') return true;
+    return false;
+  },
+  move : function(e) {
+    var nx = this.x+_dx, ny = this.y+_dy;
+    if (this.canmove(nx,ny)) {
+      this.x = nx;
+      this.y = ny;
+      _map.xo = this.vx - this.x;
+      _map.yo = this.vy - this.y;
+      ctx.clearRect(0,0,1024,768);
+      _map.draw();
+      this.draw();
+    }
+  }
+}
+
+var _map = {
+  tilesize : 24,
+  wall : new Image(),
+  map : null,
+  xo : 0,
+  yo : 0,
+
+  loadmap : function() {
+    var req = new XMLHttpRequest();
+    req.open("GET", "map", true);
+    req.overrideMimeType("text/plain");
+    req.onreadystatechange = function() {
+      if (req.readyState == 4 && req.status == 200) {
+	_map.map = req.responseText.split("\n");
+	startgame();
+      }
+    }
+    req.send(null);
+  },
+
+  init : function() {
+    this.wall.src = "img/wall.png";
+    this.wall.onload = startgame;
+    this.loadmap();
+  },
+
+  draw : function() {
+    for(var r = 0; r < this.map.length; r++) {
+	var y = r*this.tilesize + this.yo;
+	if (y < 0 || y > 768) continue;
+	for(var c = 0; c < this.map[r].length; c++) {
+	  var x = c*this.tilesize + this.xo;
+	  if (x < 0 || x > 1024) continue;
+	  if (this.map[r][c] == "#")
+	    ctx.drawImage(this.wall, x, y, this.tilesize, this.tilesize);
+      }
+    }
+  }
+};
+
+function update() {
+  if (_dx || _dy) _man.move();
+  setTimeout(update, 16);
+}
+
+var xtiles = Math.floor(1024 / _map.tilesize);
+var ytiles = Math.floor(768 / _map.tilesize);
+_map.xo = _man.vx - _man.x;
+_map.yo = _man.vy - _man.y;
+_map.init();
+_man.init();
+
+function kdown(e) {
+  switch(e.key) {
+    case 'w':
+      _dy = -3;
+      break;
+    case 's':
+      _dy = 3;
+      break;
+    case 'a':
+      _dx = -3;
+      break;
+    case 'd':
+      _dx = 3;
+      break;
+  }
+}
+function kup(e) {
+  switch(e.key) {
+    case 'w':
+      _dy = 0;
+      break;
+    case 's':
+      _dy = 0;
+      break;
+    case 'a':
+      _dx = 0;
+      break;
+    case 'd':
+      _dx = 0;
+      break;
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title> Beginning animation </title>
+ <meta charset='utf-8'>
+ <style>
+  #c {
+    border: 1px solid black;
+  }
+ </style>
+ <script>
+ var x = 100, y = 100;
+ var dx = -5, dy = 2.5;
+
+ function update(ev) {
+   var ctx = document.getElementById("c").getContext("2d");
+
+   //ctx.clearRect(0,0,800,600);
+   ctx.fillStyle="blue";
+   ctx.strokeStyle="black";
+   x = x + dx;
+   y = y + dy;
+   if (x > 775 || x < 0) dx = -dx;
+   if (y > 575 || y < 0) dy = -dy;
+   ctx.fillRect(x, y, 25, 25);
+   ctx.strokeRect(x, y, 25, 25);		      
+   setTimeout(update, 32);
+ }
+ </script>
+</head>
+<body onload='update();'>
+ <canvas id='c' width=800 height=600></canvas>
+</body>
+</html>

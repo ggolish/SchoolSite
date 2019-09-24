@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Title </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1>Break and Continue</h1>
+
+<p> Sometimes we want to exit a loop or do the next loop iteration early, to do
+  so we use the <kbd>break;</kbd> and <kbd>continue;</kbd> statements
+  respectively.
+
+<p><kbd style='margin-left: .5in;'>break [<i>label</i>];</kbd>
+
+<p> Exits the loop immediately.  Execution continues at the point following the
+    loop.
+<p> The optional <i>label</i> is used to break from a nested loop or from 
+    within a switch statement within a loop.
+
+<p> Examples:
+<div class=code>var i = 0, s = "A string with more than 10 characters";
+while (true) {
+  console.log(i, s[i]);
+  if (i++ > 8) break;
+}</div>
+<p> Prints the first 10 letters of the string in s with its index number and
+    stops.
+
+<p><kbd style='margin-left: .5in;'>continue [<i>label</i>];</kbd>
+<p> Immediately goes to the expression test part of the loop, skipping any
+    remaining statements in the loop.
+
+<div class=code>/**
+ * s = The string to scan.
+ * i = Index into the string s;
+ * t = A new string which will hold s minus the vowels.
+ */
+var i=0, c, s = "The quick brown fox jumped over the fence.";
+var t = "";
+// Set c to the character in s at index i.  If s[i] is null this will stop
+// the loop since the result of the assignment is not true.
+while ((c = s[i++]) !== undefined) {
+  if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') continue;
+  // Not a vowel, so append the character in c to t:
+  t += c;
+}
+// Will print what was in s but w/o any vowels:
+console.log(t);</div>
+
+
+</div>
+</body>
+</html>

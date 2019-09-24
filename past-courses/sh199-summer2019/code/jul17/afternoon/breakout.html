@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html onmousemove='mmove(event);' onmousedown='createball();' onmouseup='launch();'>
+<head>
+ <meta charset='utf-8'>
+ <title> Pong </title>
+ <style>
+ body { cursor: none; }
+ #c { border: 1px solid black; }
+ #frame { position: absolute; top: 20px; left: 20px; z-index: 10; }
+ </style>
+</head>
+<body onload='start();'>
+<span id='frame'>0</span>
+<canvas id='c' width=1024 height=768></canvas>
+<script>
+var TOP = 0, BOTTOM = 1, LEFT = 2, RIGHT = 3;
+var _fn = 0, _frame = document.getElementById("frame");
+var _width = 1024, _height=768, _pwidth=80, _pheight=10;
+var _ctx = document.getElementById("c").getContext("2d");
+var _px = 0, _py = _height-30, _ball = null, _newball = false;
+var _tiles = [];
+
+// From: https://stackoverflow.com/questions/9043805/test-if-two-lines-intersect-javascript-function
+// returns true iff the line from (a,b)->(c,d) intersects with (p,q)->(r,s)
+function intersects(a,b,c,d,p,q,r,s) {
+  var det, gamma, lambda;
+  det = (c - a) * (s - q) - (r - p) * (d - b);
+  if (det === 0) {
+    return false;
+  } else {
+    lambda = ((s - q) * (r - a) + (p - r) * (s - b)) / det;
+    gamma = ((b - d) * (r - a) + (c - a) * (s - b)) / det;
+    return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
+  }
+};
+
+function intersectx(x1, y1, x2, y2, x3, y3, x4, y4) {
+  var a_dx = x2 - x1;
+  var a_dy = y2 - y1;
+  var b_dx = x4 - x3;
+  var b_dy = y4 - y3;
+  var s = (-a_dy * (x1 - x3) + a_dx * (y1 - y3)) / (-b_dx * a_dy + a_dx * b_dy);
+  var t = (+b_dx * (y1 - y3) - b_dy * (x1 - x3)) / (-b_dx * a_dy + a_dx * b_dy);
+  return (s >= 0 && s <= 1 && t >= 0 && t <= 1);
+}
+function framecounter() {
+  _frame.innerHTML = _fn;
+  _fn = 0;
+}
+
+function start() {
+  for(var i = 0; i < _width / 80; i++) {
+    _tiles.push(new Tile(i*80, 50));
+    _tiles.push(new Tile(i*80, 70));
+    _tiles.push(new Tile(i*80, 90));
+    _tiles.push(new Tile(i*80, 110));
+    _tiles.push(new Tile(i*80, 130));
+
+    _tiles.push(new Tile(i*80, 300));
+    _tiles.push(new Tile(i*80, 320));
+    _tiles.push(new Tile(i*80, 340));
+    _tiles.push(new Tile(i*80, 360));
+  }
+  setTimeout(update, 16);
+  setInterval(framecounter, 1000);
+}
+
+function update() {
+  _ctx.clearRect(0,0,_width, _height);
+  _ctx.fillStyle = "red";
+  _ctx.beginPath();
+  _ctx.rect(_px, _py, _pwidth, _pheight);
+  _ctx.closePath();
+  _ctx.fill();
+  if (_newball) {
+    _ctx.fillStyle = "black";
+    _ctx.beginPath();
+    _ctx.rect(_px+(_pwidth/2)-10, _py-10, 10, 10);
+    _ctx.closePath();
+    _ctx.fill();
+  }
+  if (_ball != null) {
+    var ox=_ball.x, oy = _ball.y;
+    _ball.update();
+    if (_ball != null) {
+      for(var i = 0; i < _tiles.length;) {
+	if (_tiles[i].hit(_ball.x, _ball.y)) {
+	  console.log("hit");
+	  var side = _tiles[i].intersect(ox, oy, _ball.x, _ball.y);
+	  _ball.bounce(side, _tiles[i].x,_tiles[i].y);
+	  _tiles.splice(i, 1);
+	  continue;
+	}
+	i++;
+      }
+      _ball.draw();
+    }
+  }
+  for(var i = 0; i < _tiles.length; i++) {
+    _tiles[i].draw();
+  }
+  _fn++;
+  setTimeout(update, 16);
+}
+
+function mmove(e) {
+  _px = Math.max(0, Math.min(e.clientX-(_pwidth/2), _width-_pwidth));
+}
+
+function createball() {
+  if (_ball == null) _newball = true;
+}
+
+function R(a, b) {
+  var range = Math.abs(a-b)+1;
+  var min = Math.min(a,b);
+  return Math.floor(Math.random() * range) + min;
+}
+
+// Define a new tile object:
+function Tile(x,y) {
+  this.x = x;
+  this.xr = x + 80;
+  this.y = y;
+  this.yb = y + 20;
+  this.color = "rgb(" + R(0,255) + "," + R(0,255) + "," + R(0,255) + ")";
+
+  this.draw = function() {
+    _ctx.fillStyle = this.color;
+    _ctx.beginPath();
+    _ctx.rect(this.x, this.y, 80, 20);
+    _ctx.closePath();
+    _ctx.fill();
+  }
+  // Check if the ball would be inside of the box (i.e. has hit it):
+  this.hit = function(x, y) {
+    if (x >= this.x && x < this.xr && y >= this.y && y < this.yb) return true;
+    x+=9;
+    if (x >= this.x && x < this.xr && y >= this.y && y < this.yb) return true;
+    x-=9; y+=9;
+    if (x >= this.x && x < this.xr && y >= this.y && y < this.yb) return true;
+    x+=9;
+    if (x >= this.x && x < this.xr && y >= this.y && y < this.yb) return true;
+    return false;
+  }
+  // Determine which side of the box the path of the ball intersects:
+  this.intersect = function(ox, oy, x, y) {
+    if (intersects(ox,oy,x,y, this.x, this.yb, this.xr, this.yb)) return BOTTOM;
+    if (intersects(ox,oy,x,y, this.x, this.y, this.xr, this.y)) return TOP;
+    if (Math.abs((x+9) - this.x) < Math.abs(x - (this.xr))) return LEFT;
+    return RIGHT;
+  }
+}
+
+function Ball(x, y) {
+  this.x = x;
+  this.y = y;
+  var speed = (Math.random()*8)+8;
+  var angle = -((Math.random()*(Math.PI/2)) + Math.PI/4);
+  this.dx = speed * Math.cos(angle);
+  this.dy = speed * Math.sin(angle);
+
+  this.draw = function() {
+    _ctx.fillStyle = "black";
+    _ctx.beginPath();
+    _ctx.rect(this.x, this.y, 10, 10);
+    _ctx.closePath();
+    _ctx.fill();
+  };
+  // Determine how the ball would bounce off a tile:
+  this.bounce = function(side, x, y) {
+  console.log("bounce %s", side == TOP? "TOP" : side == BOTTOM ? "BOTTOM" : side == LEFT? "LEFT" : "RIGHT");
+    switch(side) {
+      case TOP:
+	this.y = (y - ((this.y+10)-y))-10;
+	break;
+      case BOTTOM:
+	y+=20;
+	this.y = y + (y-this.y);
+	break;
+      case LEFT:
+	this.x = (x - ((this.x+10)-x))-10;
+	break;
+      case RIGHT:
+	x += 80;
+	this.x = x + (x-this.x);
+	break;
+    }
+    if (side == TOP || side == BOTTOM) this.dy = -this.dy;
+    else this.dx = -this.dx;
+  };
+  // Update the ball position:
+  this.update = function() {
+    var ox = this.x, oy = this.y+9;
+    this.x += this.dx;
+    if (this.x < 0) {
+      this.x = -this.x;
+      this.dx = -this.dx;
+    }
+    if (this.x+9 > _width) {
+      this.x = (_width-9) - (this.x-_width);
+      this.dx = -this.dx;
+    }
+    this.y += this.dy;
+    if (this.y < 0) {
+      this.y = -this.y;
+      this.dy = -this.dy;
+    }
+    if (intersectx(ox, oy, this.x, this.y+9, _px, _py, _px+_pwidth, _py)) {
+//     if (this.y+10 >= _py && this.y < _py+10 && this.x+9 >= _px && this.x <= _px+_pwidth) {
+      this.y = (_py-10) - (_py-(this.y+9));
+      this.dy = -this.dy;
+    }
+    // If we drop off the bottom, delete the ball:
+    if (this.y > _height) {
+      _ball = null;
+    }
+  }
+}
+
+// Launch a ball on mouse-up if we've previously pressed down the mouse button:
+function launch() {
+  if (_ball == null && _newball == true) {
+    _ball = new Ball(_px+(_pwidth/2)-10, _py-10);
+    _newball = false;
+  }
+}
+</script>
+</body>
+</html>

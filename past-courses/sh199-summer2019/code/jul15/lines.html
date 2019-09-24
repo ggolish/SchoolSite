@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset='utf-8'>
+ <title> Forever loop </title>
+ <style>
+ #c { border: 1px solid black; }
+ </style>
+</head>
+<body>
+<canvas id='c' width=1024 height=768></canvas>
+<script>
+var lines = [];
+
+function drawline(ctx, x1, y1, x2, y2, color, width) {
+  ctx.lineWidth = width;
+  ctx.strokeStyle = color;
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.moveTo(x1, y1);  
+  ctx.closePath();
+  ctx.stroke();
+}
+
+function R(a, b) {
+  var range = Math.abs(a-b);
+  var m = Math.min(a,b);
+  return Math.floor(m + (Math.random() * range));
+}
+
+var x1 = R(0,1023), x2=R(0,1023), y1 = R(0,767), y2 = R(0,767)
+var dx1=R(1,20), dx2=R(1,20), dy1=R(1,20), dy2=R(1,20);
+
+function update() {
+  var ctx = document.getElementById("c").getContext("2d");
+//  ctx.clearRect(0,0,1024,768);
+  var color = "rgb(" + R(0,255) + "," + R(0,255) + "," + R(0,255) + ")";
+  drawline(ctx, x1, y1, x2, y2, color, 3);
+  lines.push({x1: x1,y1: y1, x2: x2, y2: y2});
+  x1 += dx1;
+  if (x1 < 0 || x1 >= 1024) dx1 = -dx1;
+  x2 += dx2;
+  if (x2 < 0 || x2 >= 1024) dx2 = -dx2;
+
+  y1 += dy1;
+  if (y1 < 0 || y1 >= 768) dy1 = -dy1;
+  y2 += dy2;
+  if (y2 < 0 || y2 >= 768) dy2 = -dy2;
+
+  if (lines.length > 100) {
+    var l = lines.shift();
+    drawline(ctx, l.x1, l.y1, l.x2, l.y2, "white", 5);
+  }
+  setTimeout(update, 33);
+}
+
+setTimeout(update, 33);
+
+</script>
+</body>
+</html>

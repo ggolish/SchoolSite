@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Notes and Thoughts - Summer Honors at ISU, Game Programming</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        color: maroon;
+      }
+      h2 {
+        color: blue;
+      }
+      ul {
+        list-style-type: square;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <h2>Homework</h2>
+    <ul>
+      <li>Read through the javascript tutorials linked off of Steve's Summer Honors page</li>
+      <li>Work on modifying one of the examples from class</li>
+      <li>Try out <a href="http://ai2.appinventor.mit.edu">MIT App Inventor</a> for fun</li>
+      <li>See the <a href="http://cs.indstate.edu/info/basic.html">Start Here</a> page off the CS site</li>
+      <li>Check out <a href="https://docs.google.com/document/d/1VEWRjgIMCfVNs_j4RvBGbLcERl7Q02zP_235LFm5DJE/edit">CS 151 online</a></li>
+      <li>If you'd like a permanent account on the CS server, email jkinne@cs.indstate.edu</li>
+      <li>Feel free to be in touch about anything...</li>
+    </ul>
+    
+    
+    
+    <h2>Videos</h2>
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=DKrdLKetBZE">How Game Engines Work</a></li>
+      <li><a href="https://www.youtube.com/watch?v=3SH3CPJhthE">Getting into the gaming industry</a></li>
+      <li><a href="https://www.youtube.com/watch?v=z06QR-tz1_o">Starting your first game</a></li>
+      <li><a href="https://www.youtube.com/watch?v=HXvkC6N1bAI">Future of video gaming</a></li>
+      <li><a href="https://www.youtube.com/watch?v=mIFiftCLQsc">facial capture</a></li>
+      <li><a href="https://www.youtube.com/watch?v=BdlL5bwbCiI">Unity tutorial</a></li>
+      <li><a href="https://www.youtube.com/watch?v=OxYW0bqtiTo">Teaching video games</a></li>
+      <li><a href="https://www.youtube.com/watch?v=g4a7_HH9Wbg">What do programmers do</a></li>
+    </ul>
+
+    <h2>sh14's examples based on Steve's</h2>
+    <p>Note - links are to sh14's versions.  For items 4-8, resist the urge to just copy my code; try
+      to figure it out, ask for help, etc.</p>
+    
+    <ol>
+      <li>Run the commands mentioned above to have copies of Steve's stuff.</li>
+      <li>Run the command chfn in your shell to update your name information.</li>
+      <li>hello.html - run the following from your shell, then edit the file to put in some information.<br>
+	cp ~sh14/public_html/hello.html ~/public_html/hello.html<br>
+	See mine at <a href="sh14-code/hello.html">hello.html</a></li>
+      <li><a href="sh14-code/animate1.html">animate1.html</a> - modify your animate1.html so that each of the following -
+	(a) square is filled in, (b) you have some text above the canvas giving the user instructions,
+	(c) arrow keys move the square (up/down/left/right, use the key.html page...),
+	(d) don't let square go outside of the canvas,
+	(e) anything else you can think of!</li>
+      <li><a href="sh14-code/animate2.html">animate2.html</a> - modify your animate2.html so that each of the following -
+	(a) make the square blue instead of red,
+	(b) make the square go half as fast,
+	(c) don't erase the canvas each time, so you'll see a history of where the square has been,
+	(d) make the border of the square black,
+	(e) make the square half as wide and tall,
+	(f) make the square start by going down to the left,
+	(g) your choice of something else...
+      </li>
+      <li><a href="sh14-code/canvas.html">canvas.html</a> - modify your canvas.html so that each of the following -
+	(a) you have another blue triangle that is a mirror of the one that is there, so the two can look
+	like ears,
+	(b) there is a gold square beneath the one that is there already, so it could be the "body" of a
+	gold rectangle snowman,
+	(c) put another gold square beneath the second one,
+	(d) put black squares on the mid-section of the snowman as buttons,
+	(e) draw the text somewhere on the canvas "I love gold, I mean snow.",
+	(f) as you wish.
+      </li>
+      <li><a href="sh14-code/draw.html">draw.html</a> - modify your draw.html so that each of the following -
+	(a) you have an extra color button, and use maroon for the color,
+	(b) when the user is done with a line, fill it in also,
+	(c) add a checkbox so the user can specify if they want the line to be filled or not,
+	(d) make the color buttons so that if they are double clicked, the clear button will use that
+	color as the background color,
+	(e) whatever you want.
+      </li>
+      <li><a href="sh14-code/ship.html">ship.html</a> - modify your ship.html so that each of the following -
+	(a) make your flame some other color (e.g., orange),
+	(b) use a black background and white ship color,
+	(c) create a second object that is on the screen and has its position change somehow,
+	(d) keep track of the total mount of fuel and draw a fuel rectangle that gets smaller
+	as the fuel is used up,
+	(e) make the ship so it can't go through the "ground" and add gravity that tends to pull
+	the ship down,
+	(f) your choice.
+      </li>
+    </ol>
+
+    <h2>Notes and things to remember ...</h2>
+    <ul>
+      <li>FWIW, <a href="http://cs.indstate.edu/info/curiosities.html">http://cs.indstate.edu/info/curiosities.html</a></li>
+
+      <li>To view one of your files (for example this one in my account) browse to something like -
+	<a href="http://cs.indstate.edu/~sh14/July17.html">http://cs.indstate.edu/~sh14/July17.html</a>
+      </li>
+      <li>To make a backup of your work from yesterday, run the following in your shell - <br>
+	rsync -avzP ~/public_html ~/public_html.backup
+      </li>
+      <li>
+	To copy over Steve's code to a directory in your account, run the following in your shell - <br>
+	rsync -avzP ~sbaker/public_html/sh/code/ ~/public_html/sbaker
+      </li>
+      <li>
+	To view those files in your browser, browse to something like -
+	<a href="http://cs.indstate.edu/~sh14/sbaker/ship.html">http://cs.indstate.edu/~sh14/sbaker/ship.html</a>
+      </li>
+      <li>
+	To create your own local copy of Steve's code, run the following in your shell - <br>
+	rsync -avzP ~sbaker/public_html/sh/code/ ~/public_html/sbaker.mine <br>
+	and browse to one of those files by doing something like -
+	<a href="http://cs.indstate.edu/~sh14/sbaker.mine/ship.html">http://cs.indstate.edu/~sh14/sbaker.mine/ship.html</a>
+      </li>
+      <li>Avoid putting spaces in file names.</li>
+      <li>Use .html as the file extension for html files. <em>Note - Windows and Mac OS tend to hide file extensions from you while unix/linux assumes you can handle it.</em></li>
+      <li>Linux/unix and programming are case-sensitive.</li>
+      <li>Don't panic.</li>
+      <li>Stay curious.</li>
+      <li>Use the javascript console to see if you have errors in your javascript.  On most browsers, right-click, choose
+	something along the lines of "inspect element", and then click something along the lines of "console", and refresh the page to load it again.</li>
+      <li>Be lazy (in a good way).</li>
+      <li>Gaming concept - game engine (you could search for gamemaker tutorial), for unreal or unity there is a bit of vocabulary
+	you need to know (a bit of a learning for that)</li>
+      <li>Gaming concept - update loop (draws stuff, keys just change some variables).</li>
+      <li>Gaming concept - state of the world, state of each character.</li>
+      <li>Gaming concept - get the game play right first.</li>
+      <li>Gaming concept - switching between different perspectives (transformations of coordinate systems)</li>
+      <li>Gaming concept - prototyping.</li>
+      <li>Gaming concept - the language matters (sometimes).</li>
+      <li>Future of gaming - VR? (not really, but probably augmented reality - in useful ways), no more gaming consoles? (plateau),
+	watching gaming is popular? (plateau), everyone plays video games? (no, probably 80%)</li>
+      <li>Web programming -
+	html - information (not what it looks like, not what does, but yes how it links to each other, stands for hypertext markup language),
+	css/style - what information looks like,
+	javascript - what the page does (and also drawing things...)
+      </li>
+      <li>
+	Programming concepts ...
+	<ul>
+	  <li>variable - keeps information, you read the value or set the value</li>
+	  <li>function/procedure - block of code that has a name, has a purpose, does something</li>
+	  <li>syntax error - code doesn't do anything</li>
+	  <li>logical error - code doesn't do what you want</li>
+	  <li>Programming style - properly indent your code (increase indenting on each function, loop, etc., and decrease again when each is done), use good variable variable and function names</li>
+	</ul>
+      </li>
+    </ul>
+    
+  </body>
+</html>

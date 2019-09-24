@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html onkeydown='key(event);' onkeypress='char(event);'>
+<head>
+ <title> Keyboard events </title>
+ <meta charset='utf-8'>
+ <style>
+  td {
+    border: 1px solid black;
+    width: 100px; height: 100px;
+    text-align: center;
+  }
+ </style>
+ <script>
+ function key(ev) {
+   var td = document.getElementById("keycode");
+   td.innerHTML = ev.keyCode;
+   document.getElementById("shift").innerHTML = ev.shiftKey;
+ }
+ function char(ev) {
+   var td = document.getElementById("charcode");
+   td.innerHTML = ev.key;
+ }
+ </script>
+</head>
+<body>
+ <h1> Keyboard events </h1>
+ <table>
+  <tr>
+   <td> keyCode  <td id='keycode'>
+  <tr>
+   <td> charCode <td id='charcode'>
+  <tr>
+   <td> shiftFlag <td id='shift'>
+ </table>
+</body>
+</html>

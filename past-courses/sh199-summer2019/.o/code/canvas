@@ -1,0 +1,184 @@
+Mozilla Developer Network Canvas documentation:
+  https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
+
+
+
+HTML Canvas element:
+===================
+ <canvas>	- Defines a 2D or 3D drawing area for JavaScript programs.
+   Attributes:
+    width, height - Sets the width and height of the canvas. Defaults to
+		    300x150.  Don't use CSS to set the width and height, as
+		    that just zooms the default 300x150.
+  - Setting either of these properties will reset the canvas to transparent
+    black and resets all its graphic attributes to their default values.
+
+  Example
+  <!DOCTYPE html>
+  <html>
+   <body>
+    <canvas id='c' width=600 height=600></canvas>
+   </body>
+  </html>
+
+JavaScript Methods:
+-------------------
+object getContext(string contextID, [args..])
+  contextID = "2d"
+  - Returns a canvas rendering context.
+
+var ctx = document.getElementById("my_canvas").getContext("2d");
+ - Gets the 2D drawing context object from the canvas element, storing it in
+   the variable 'ctx'.
+
+CanvasRenderingContext2D:
+=========================
+Properties:
+-----------
+ font		The font used for text-drawing, same syntax as the CSS font
+		attribute.
+		ex: ctx.font = "24pt Arial";
+
+ lineWidth	Specifies line width (in pixels) for line drawing operations.
+		Default 1, lines are centered over the path.
+		ex: ctx.lineWidth = 5;
+
+ fillStyle	The current color, pattern or gradient used for filling paths.
+		Can be a CSS color, or CanvasGradient or CanvasPattern object.
+		ex: ctx.fillStyle = "green";
+
+ strokeStyle	Like fillStyle, specifies for line drawing operations.
+		ex: ctx.strokeStyle = "black";
+
+ textAlign	Specifies horizontal text alignment. 'left', 'center', 'right'.
+
+ + many more
+
+Methods:
+--------
+ beginPath()
+  - Discards any currently defined path and begins a new one.
+
+ closePath()
+  - Closes the current open subpath by drawing a line from the current point to
+    the first point in the path.
+
+ lineTo(double x, y)
+  - Adds a straight line to the current subpath.
+
+ moveTo(double x, y)
+  - Sets the current position to x,y and begins a new subpath.
+
+ fill()
+  - fills the current path using the current fillStyle property.  Any subpaths
+    not closed are filled as if closePath() had been called (but the paths are
+    not actually closed.) Filling does not clear the path, so you can call
+    stroke() after filling.
+
+ stroke()
+  - Draws the outline of the current path.
+
+ arc(double x, y, radius, startAngle, endAngle, [boolean anticlockwise])
+
+ boolean isPointInPath(x, y)
+  - Returns true if the specified point is inside or on the edge of the current
+    path, false otherwise.
+
+ex:
+
+<body>
+<canvas id='c' width=600 height=600></canvas>
+<script>
+  var ctx = document.getElementById("c").getContext("2d");
+  ctx.strokeStyle = "red";	// Sets the drawing color to "red";
+  ctx.beginPath();		// Begins a new "path".
+  ctx.moveTo(100,100);		// Moves the pen to 100,100
+  ctx.lineTo(500,500);		// Draws a line to 500,500
+  ctx.moveTo(100,500);		// Moves the pen again to 100,500
+  ctx.lineTo(500,100);		// Draws a line to 500,100
+  ctx.closePath();		// Closes the drawing path.
+  ctx.stroke();			// Actually draws the path that was created.
+</script>
+</body>
+
+Rectangles:
+----------
+ rect(double x, y, width, height)
+  - Adds a rectangle to the path as its own subpath and is not connected to any
+    other subpath.
+
+ clearRect(double x, y, width, height)
+  - fills the specified rectangle w/ transparent black.  Doesn't affect the
+    current point or path.
+
+ fillRect(double x, y, width, height)
+  - fills the specified rectangle. Has not affect on the current point or path.
+
+ strokeRect(double x, y, width, height)
+  - draws the outline of a rectangle. Has no affect on the current point or
+    path.
+
+Text:
+-----
+ fillText(string text, double x, y [, maxWidth])
+  - Draws text using the current fillStyle property.
+
+ TextMetrics measureText(string text)
+  - Measures the width the specified text would occupy if drawn with the current
+    font. ex:
+    var tm = measureText("some text");
+      tm.width == width in pixels of "some text"
+
+ strokeText(string text, double x, y, [maxWidth])
+  - Like fillText, but only the outline of the text.
+
+Saving and restoring graphics state:
+-----------------------------------
+ save()
+  - Pushes a copy of the current graphics state to a stack.
+
+ restore()
+  - Pops the stack of saved graphics states and restores the values of the
+    CanvasRenderingContext2D properties, the clipping path and the
+    transformation matrix. Used w/ save().
+
+Transformations:
+---------------
+ rotate(double angle)
+  - Alters the transformation matrix so that any subsequent drawing appears
+    rotated within the canvas by the specified angle. Angle is in radians.
+    radians = (Math.PI/180)*degrees
+
+ scale(double sx, sy)
+  - Sets x and y scaling factors.
+
+ translate(double x, y)
+  - adds x and y offsets to the transformation matrix.
+
+Images:
+------
+ Image([width, height])
+  - Creates a new unspecified image object. Setting the src property will
+    load that image.  Use the onload property to tell when the image loading
+    has been finalized:
+    ex:
+      var img = new Image();
+      img.onload = function() {
+        // do something with image when called.
+      };
+      img.src = 'img/pict.png';
+
+ drawImage(image, x, y, [width, height])
+  - Draws the image, at x,y, optionally scaled to width and height.
+
+ImageData:
+=========
+ getImageData(left, top, width, height)
+  - Gets an array of pixel values in RGBA order from the current context;
+   
+ - To view the RGBA values of individual pixels:
+ function getpixel(ctx, x, y) {
+   var pixel = ctx.getImageData(x, y, 1, 1);
+   return {r: pixel[0], g: pixel[1], b: pixel[2], a: pixel[3] };
+ }
+

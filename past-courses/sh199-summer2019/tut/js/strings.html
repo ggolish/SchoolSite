@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Strings </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1>Strings</h1>
+<p> Strings as we've seen are lists of characters enclosed in quotes (single
+    (<kbd>'</kbd>) or double quotes (<kbd>"</kbd>).)
+
+<p> Each character in the string can be accessed individually by specifying
+  the integer index inside of <kbd>[]</kbd>'s that are appended to the variable
+  name or string constant. i.e:<br>
+    <kbd style='margin-left:.5in;'>str[i]</kbd><br>
+  or:<br>
+    <kbd style='margin-left:.5in;'>"abc"[i]</kbd><br>
+  The first character in a string is at index 0, the second at index 1, etc.
+  If the index is negative or beyond the length of the string the result is
+  "undefined", i.e.:
+  <div class=code>var str = "abc";
+str[3] === undefined;</div>
+
+<p> The <kbd>length</kbd> <i>property</i> gives the number of characters in the
+string:
+<div class=code>var a = "ten letters";
+console.log(a.length);	// outputs 11.</div>
+
+<p><b><i>Properties</i></b> can be accessed on string constants:
+<div class=code>"abc".length == 3;</div>
+
+<p><b><i>Methods</i></b> are functions that operate on the variable or constant:
+<div class=code>var a = "one two three";
+a.split(' ');</div>
+  or:
+<div class=code>"one two three".split(' ');</div>
+
+<p> Makes an array: <kbd>["one", "two", "three"]</kbd> where the string is
+  "<i>split</i>" into words separated by the string passed to the split method.
+
+<div class=code>a.split(""); // Breaks string in a into an array, one character per index.</div>
+
+<p> <kbd>.substr()</kbd> method - extracts a sub-string:
+<div class=code>"abcdefghi".substr(1,3) == "bcd";
+//                   ^ Optional, if not present goes to the end of the string.</div>
+
+</div>
+</body>
+</html>

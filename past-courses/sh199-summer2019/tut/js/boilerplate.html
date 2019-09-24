@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Title </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+
+</div>
+</body>
+</html>

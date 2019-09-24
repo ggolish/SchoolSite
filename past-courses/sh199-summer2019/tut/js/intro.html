@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Introduction to JavaScript </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1> Introduction to JavaScript </h1>
+
+<h3> What is a programming "Language"? </h3>
+<ul>
+ <li> Simply it is a <i>formal</i> (i.e. well-defined) language that is
+    unambiguous as much as possible at all levels. Where in English words may
+    have different meaning based on context, computers do not handle such
+    ambiguity well and so formal languages try to eliminate such ambiguity as
+    much as possible.  The upside is that the rules for the languages' grammar
+    or the <i>syntax</i> of the language are very clearly defined, making it
+    easier to learn than a Human language.
+ <li> The purpose of the language is to instruct the computer, usually when
+    given some input, to perform operations on the given <i>input</i>, producing
+    some desired <i>output</i>.
+ <li> In that respect a program is like a recipe, ingredients (input) in,
+    something to eat out.
+ <li> Computers only understand very simple things at the lowest levels, like:
+   <ul>
+    <li> Copy data from one place to another. (<i>assignment</i>)
+    <li> Do numeric operations, such as addition and multiplication.
+         (<i>expressions</i>)
+    <li> Compare two values and determine if they are the same or not or if one
+         is less or greater than the other. (<i>conditionals</i>,
+         <i>Boolean logic</i>)
+    <li> Jump around from one place to another in the program depending on the
+         outcomes of the above comparisons. (<i>loops</i> and <i>functions</i>)
+   </ul>
+  <li> Computer languages attempt to abstract the simple things computers do to
+    a higher level to make things easier for the programmer.  Some languages
+    do so better than others.
+  <li> Some languages may be described as <i>higher</i> or <i>lower</i> level.
+    This is usually meant to describe how close the syntax is the "lowest" level
+    language <i>assembly</i> or <i>machine language</i> (ML) which is the
+    <i>native</i> language of any computer and consists of very simple
+    instructions that individually usually do nothing more than one of the four
+    above things.  Programming in assembly is usually regarded as tedious and
+    often difficult, making for more mistakes that cause program crashes, especially
+    for large programs. And so higher level languages were developed that made
+    making mistakes less likely allowed the incorporation of libraries and more
+    expressive code to abstract away common tasks that might take a lot of
+    effort to develop in a lower level language.
+</ul>
+
+<h3> What is the "syntax" of a computer language? </h3>
+<p> It is the grammar, or rules for the language, just as English does, computer
+    languages have similar rules, but much more limited range of expression.
+
+<p> Often times programmers may describe the syntax of a programming language in
+    terms of Lego bricks.  Things like <i>statements</i> in such languages are
+    like bricks that can then be snapped into a language anywhere a statement
+    would go, and in this way assembling a program can be like snapping Lego
+    bricks together.  You have many different kinds of <i>statements</i>, but
+    any kind of statement can be snapped into a statement spot.  When learning
+    a computer language it may be useful to employ this kind of mindset.
+
+<p> For this class we will learn JavaScript aka
+    <a href='https://en.wikipedia.org/wiki/ECMAScript'>ECMAScript</a>.  It is
+    incorporated into almost every browser, and also stand-alone as 
+    interpreters/compilers such as <a href='http://nodejs.org'> node.js </a> or
+    "node" and <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey'> SpiderMonkey </a>
+    or "js".  One of the reasons for the choice of this language over others
+    is that it should not disadvantage anyone moving on to CS201/CS202 which
+    use C/C++ which are structurally similar, it is widely used in industry and
+    so there are a large number of free online informational resources and
+    coupled with a simple text editor and web browser, everyone already has a
+    development environment installed on their computer, making the cost of
+    entry into JavaScript development very low indeed.
+</div>
+</body>
+</html>

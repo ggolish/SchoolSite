@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Arithmetic Expressions </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1> Arithmetic Expressions </h1>
+
+<p> An expression is any mathematical expression that evaluates to some value,
+  the result of which may be assigned to a variable or just used directly.
+  ex: <kbd>1+2</kbd>, <kbd>3-4</kbd>
+
+<p> The Mathematical Operators are:
+ <table>
+ <tr>
+  <td style='font-size:150%; text-align: center; vertical-align: top;'> +
+  <td>Addition, adds two numbers or concatenates two strings together. ex:<br>
+    <kbd>1+2</kbd> &rarr; <kbd>3</kbd><br>
+    <kbd> "a" + "b"</kbd> &rarr; <kbd>"ab"</kbd>
+ <tr>
+  <td style='font-size:150%; text-align: center; vertical-align: top;'> <kbd>-</kbd>
+  <td> Subtraction: <kbd>a-b</kbd> = subtraction of b from a.
+ <tr>
+  <td style='font-size:150%; text-align: center; vertical-align: top;'> <kbd>*</kbd>
+  <td> Multiply: <kbd>a*b</kbd> = multiplies a by b
+ <tr>
+  <td style='font-size:150%; text-align: center; vertical-align: top;'> <kbd>/</kbd>
+  <td> Divide: <kbd>a/b</kbd> = divides a by b
+ <tr>
+  <td style='font-size:150%; text-align: center; vertical-align: top;'> <kbd>%</kbd>
+  <td> Modulus: Remainder from integer division: <kbd> a%b</kbd> = remainder
+    from <kbd>a/b</kbd>
+ <tr>
+  <td style='font-size:120%; text-align: center; vertical-align: top;'> <kbd>(<i>expr</i>)</kbd>
+  <td> Evaluates the <i>expression</i> outside of the rest of the expression,
+       forcing order of evaluation:
+	 <div class=code>5 * 2 + 3		== 13;
+5 * ( 2 + 3 )	== 25;</div>
+</table>
+
+<p> If either side of an addition operator (<kbd>+</kbd>) is a string, then
+  the side that is not a string is converted into one and string concatenation
+  is performed, so be careful to convert strings into numbers with
+  <kbd>parseInt</kbd> or <kbd>parseFloat</kbd> before attempting to do numeric
+  addition.
+
+<p> Incrementing and decrementing a numeric value by one happens so often in
+  programming there is a special operation for it.
+<table style='margin-left: .5in;'>
+ <tr><td> <kbd>++</kbd>&nbsp;&nbsp; <td> Increment a variable by one.
+ <tr><td> <kbd>--</kbd>&nbsp;&nbsp; <td> decrement a variable by one.
+</table>
+
+<p> The ++ and -- operations must be associated with a variable:
+<div class=code>var a = 10;		// a is assigned the value 10.
+a++;			// Increments a by one, a now is 11.
+++a;			// Also increments a by one, a is now 12.</div>
+
+<p>There is a difference in which side of the variable we use <kdb>++</kbd> /
+   <kbd>--</kbd> on if we want the value of the variable.
+
+<div class=code>var x = ++a;	// Pre-increment: a is incremented, then the new value is given to x.
+var x = a++;	// The value of a is given to x first, then a is incremented.</div>
+
+
+</div>
+</body>
+</html>

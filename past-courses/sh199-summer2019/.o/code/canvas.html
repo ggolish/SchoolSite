@@ -1,0 +1,44 @@
+<!--
+  HTML comment
+-->
+<!DOCTYPE html>
+<html>
+<head>
+ <title> My first homepage </title>
+ <meta charset='utf-8'>
+ <style>
+ /**
+  * CSS - Cascading Style Sheets
+  */
+ #c { border: 2px dashed #E2231A; }
+ html { background-color: white; }
+ </style>
+</head>
+<body>
+ <h1> Canvas example </h1>
+ <canvas id='c' width=800 height=600></canvas>
+ <script>
+ /**
+  * Put some JavaScript here.
+  */
+ /* Get the canvas element itself as a JavaScript object: */
+ var c = document.getElementById("c");
+
+ /* Get the drawing context from the canvas: */
+ var ctx = c.getContext("2d");
+ ctx.strokeStyle = "#005CDE";
+ ctx.fillStyle = "#FCBB07";
+ ctx.lineWidth = 3;
+ ctx.fillRect(100,100, 50, 50);
+
+ ctx.translate(100, 100);
+ ctx.rotate((Math.PI/180)*45);
+ ctx.moveTo(-20,-10);
+ ctx.lineTo(20,0);
+ ctx.lineTo(-20,10);
+ ctx.lineTo(-20,-10);
+ ctx.stroke();
+
+ </script>
+</body>
+</html>

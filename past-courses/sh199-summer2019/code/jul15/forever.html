@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset='utf-8'>
+ <title> Forever loop </title>
+ <style>
+ #c { border: 1px solid black; }
+ </style>
+</head>
+<body>
+<canvas id='c' width=1024 height=768></canvas>
+<script>
+var x = 10, dx = .5, y = 10, dy = .2;
+
+function update() {
+  var ctx = document.getElementById("c").getContext("2d");
+  ctx.clearRect(0,0,1024,768);
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = 3;
+  ctx.save();
+  ctx.translate(x,y);
+  ctx.beginPath();
+  ctx.moveTo(0,0);
+  ctx.lineTo(40,40);
+  ctx.moveTo(0,0);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.restore();
+  x = x + dx;
+  y = y + dy;
+  setTimeout(update, 33);
+}
+
+setTimeout(update, 33);
+
+</script>
+</body>
+</html>

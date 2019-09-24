@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Nested Loops </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1>Nested Loops</h1>
+<p> Loops that are inside of other loops are called <i>nested loops</i>.
+<p> The inner Loop runs <b>completely</b> (i.e. through all its iterations) for
+    each single iteration or step of the outer loop.
+
+Examples:
+
+<div class=code>for(var row = 1; row <= 4; row++) {					// Outputs:
+  var s = "";										// ****
+  for(var col = 0; col < 5-row; col++) s += "*";	// ***
+  console.log(s);									// **
+}													// *</div>
+
+<p> How many "steps" in total does this take? How many iterations of the outer
+  loop?  How many of the inner loop?
+
+<p> In the above case we can visually see how many as each star represents a
+  step in the inner loop and all the stars represent the total of all steps
+  taken.  The number of rows represent the steps taken by the outer loop and
+  the stars within each row the steps taken by the inner loop for that
+  particular row.
+
+<p>
+<div class=code>// Creates a 2 dimensional matrix where each row/column position is equal
+// to the row times the column.
+var m = [];
+for(var row = 0; row <= 10; row++) {
+  m[row] = [];
+  for(var col = 0; col <= 10; col++) {
+    m[row][col] = row*col;
+  }
+}
+console.log(m);</div>
+<p>
+<div class=code>//Print all the hex numbers from 00 to FF:
+
+var hex = "0123456789ABCDEF";
+for(var a = 0; a < 16; a++) {
+  for(var b = 0; b < 16; b++) {
+    console.log(hex[a] + hex[b]);
+  }
+}</div>
+
+</div>
+</body>
+</html>

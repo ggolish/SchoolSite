@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset='utf-8'>
+ <title> Ship </title>
+ <style>
+ #c { border: 1px solid black; }
+ </style>
+</head>
+<body onkeydown='keydown(event);' onkeyup='keyup(event);' onload='start();'>
+<canvas id='c' width=1024 height=768></canvas>
+<script>
+var ctx = document.getElementById("c").getContext("2d");
+
+var rocks = [];
+function start() {
+  for(var i=0; i < 5; i++) {
+    rocks.push(new Rock(100, R(0,1023), R(0,768)));
+  }
+  for(var i=0; i < 5; i++) {
+    rocks.push(new Rock(75, R(0,1023), R(0,768)));
+  }
+  for(var i=0; i < 5; i++) {
+    rocks.push(new Rock(40, R(0,1023), R(0,768)));
+  }
+}
+
+var thrusting = false;
+
+var ship = {
+  x : 1024/2,
+  y : 768/2,
+  dx : 0,
+  dy : 0,
+  angle : 0,
+  da : 0,
+
+  draw : function() {
+    ctx.clearRect(0,0,1024,768);
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 3;
+    ctx.save();
+    ctx.translate(this.x,this.y);
+    ctx.rotate(this.angle);
+    ctx.beginPath();
+    ctx.moveTo(20,0);
+    ctx.lineTo(-20,10);
+    ctx.lineTo(-16,7);
+    ctx.lineTo(-16,-7);
+    ctx.lineTo(-20,-10);
+    ctx.closePath();
+    ctx.stroke();
+    if (thrusting) {
+      ctx.strokeStyle = "red";
+      ctx.beginPath();
+      ctx.moveTo(-18,6);
+      ctx.lineTo(-35,0);
+      ctx.lineTo(-18,-6);
+      ctx.moveTo(-18,6);
+      ctx.closePath();
+      ctx.stroke();
+    }
+    ctx.restore();
+  },
+  update : function() {
+    if (thrusting) {
+      this.dy += .15 * Math.sin(this.angle);
+      this.dx += .15 * Math.cos(this.angle);
+    } else {
+      this.dx *= .997;
+      this.dy *= .997;
+    }
+    this.x = this.x + this.dx;
+    if (this.x <= -20) this.x = 1024+20;
+    else if (this.x > 1024+20) this.x = -20;
+    this.y = this.y + this.dy;
+    if (this.y <= -20) this.y = 768+20;
+    else if (this.y > 768+20) this.y = -20;
+    this.angle = this.angle + this.da;
+  }
+};
+
+function update() {
+  ship.draw();
+  ship.update();
+  for(var i = 0; i < rocks.length; i++) {
+    rocks[i].draw();
+    rocks[i].update();
+  }
+  setTimeout(update, 16);
+}
+
+setTimeout(update, 16);
+
+function keydown(e) {
+  console.log(e.key);
+  switch(e.key) {
+    case 'ArrowUp':
+    case 'w':
+      thrusting = true;
+      break;
+    case 'ArrowDown':
+    case 's':
+      break;
+    
+    case 'ArrowLeft':
+    case 'a':
+      ship.da = -5 * Math.PI/180;
+      break;
+    case 'ArrowRight':
+    case 'd':
+      ship.da = 5 * Math.PI/180;
+      break;
+  }
+}
+function keyup(e) {
+  switch(e.key) {
+    case 'ArrowUp':
+    case 'w':
+      thrusting = false;
+      break;
+    case 'ArrowDown':
+    case 's':
+      break;
+    case 'ArrowLeft':
+    case 'ArrowRight':
+    case 'a':
+    case 'd':
+      ship.da = 0;
+      break;
+  }
+}
+
+function R(a, b) {
+  var range = Math.abs(a-b)+1;
+  var min = Math.min(a,b);
+  return Math.floor(Math.random()*range) + min;
+}
+
+function Rock(size, x, y) {
+  this.size = size;
+  this.x = x;
+  this.dx = R(-4,4);
+  this.y = y;
+  this.dy = R(-4,4);
+  this.angle = 0;
+  this.da = R(-8,8)*Math.PI/180;
+
+  this.draw = function() {
+    ctx.strokeStyle = "black";
+    ctx.save();
+    ctx.translate(this.x,this.y);
+    ctx.rotate(this.angle);
+    ctx.beginPath();
+    ctx.rect(-this.size/2,-this.size/2,this.size,this.size);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.restore();
+  };
+
+  this.update = function() {
+    this.x = this.x + this.dx;
+    if (this.x <= -20) this.x = 1024+20;
+    else if (this.x > 1024+20) this.x = -20;
+    this.y = this.y + this.dy;
+    if (this.y <= -20) this.y = 768+20;
+    else if (this.y > 768+20) this.y = -20;
+    this.angle = this.angle + this.da;
+  };
+}
+
+</script>
+</body>
+</html>

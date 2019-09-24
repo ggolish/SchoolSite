@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html onkeydown='keydn(event);' onkeyup='stop(event);'>
+<head>
+ <title> The ship </title>
+ <meta charset='utf-8'>
+ <style>
+  #c {
+    border: 1px solid black;
+  }
+ </style>
+ <script>
+ var thrusting = false, rotating = 0;
+ var x = 400, y = 300;
+ var dx = 0, dy = 0;
+ var angle = 0;
+
+ function keydn(ev) {
+   switch(ev.keyCode) {
+     case 87: // w
+     case 38: // up arrow
+       thrusting = true;
+       break;
+     case 83: // s
+     case 40: // down arrow
+       break;
+     case 65: // a
+     case 37: // left
+       rotating = - Math.PI/24;
+       break;
+     case 68: // d
+     case 39: // right
+       rotating = Math.PI/24;
+       break;
+   }
+ }
+
+ function stop(ev) {
+   switch(ev.keyCode) {
+     case 87: // w
+     case 38: // up arrow
+       thrusting = false;
+       break;
+     case 83: // s
+     case 40: // down arrow
+       break;
+     case 65: // a
+     case 37: // left
+     case 68: // d
+     case 39: // right
+       rotating = 0;
+       break;
+   }
+ }
+ 
+ function update(ev) {
+   var ctx = document.getElementById("c").getContext("2d");
+
+   if (thrusting) {
+     dx = dx + (.12 * Math.cos(angle));
+     dy = dy + (.12 * Math.sin(angle));
+   } else {
+     dx = dx * .997;
+     dy = dy * .997;
+   }
+   x = x + dx;
+   y = y + dy;
+
+   if (x > 800) x = 0;
+   if (x < 0) x = 800;
+   if (y > 600) y = 0;
+   if (y < 0) y = 600;
+
+   ctx.clearRect(0,0,800,600);
+   ctx.strokeStyle="black";
+   ctx.lineWidth=3;
+   ctx.save();
+   ctx.translate(x, y);
+   angle = angle + rotating;
+   ctx.rotate(angle);
+   ctx.beginPath();
+   ctx.moveTo(-20,-10);
+   ctx.lineTo(20,0);
+   ctx.lineTo(-20,10);
+   ctx.closePath();
+   ctx.stroke();
+   if (thrusting) {
+     ctx.strokeStyle = "red";
+     ctx.beginPath();
+     ctx.moveTo(-22, -8);
+     ctx.lineTo(-42, 0);
+     ctx.lineTo(-22, 8);
+     ctx.moveTo(-22, -8);
+     ctx.closePath();
+     ctx.stroke();
+   }
+   ctx.restore();
+ 
+   setTimeout(update, 16);
+ }
+ </script>
+</head>
+<body onload='update();'>
+ <canvas id='c' width=800 height=600></canvas>
+</body>
+</html>

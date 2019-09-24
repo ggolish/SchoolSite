@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html onkeydown='keydn(event);' onkeyup='stop(event);' onmousedown='move(event);'>
+<head>
+ <title> The ship </title>
+ <meta charset='utf-8'>
+ <style>
+  #c {
+    border: 1px solid black;
+  }
+ </style>
+ <script>
+   var x = 200, y = 200;
+
+   function keydn(ev) {
+   }
+
+   function stop(ev) {
+   }
+   
+   function move(ev) {
+       x = ev.clientX; y = ev.clientY;
+       draw();
+   }
+
+function draw() {
+    var ctx = document.getElementById("c").getContext("2d");
+    ctx.clearRect(0,0,800,600);
+    
+  ctx.save();
+  ctx.strokeStyle="black";
+  ctx.translate(x,y);
+  ctx.beginPath();
+  ctx.moveTo(30,0);
+  ctx.lineTo(30,5);
+  ctx.lineTo(22, 15);
+  ctx.lineTo(-22, 15);
+  ctx.lineTo(-30,5);
+  ctx.lineTo(-30,0);
+  ctx.lineTo(-15,-5);
+  ctx.lineTo(15,-5);
+  ctx.lineTo(15,-15);
+  ctx.lineTo(-15,-15);
+  ctx.lineTo(-15,-5);
+  ctx.moveTo(15,-5);
+  ctx.lineTo(30,0);
+  ctx.closePath();
+
+  ctx.stroke();
+  // draw the barrel:
+  ctx.translate(0,-12);
+  ctx.rotate(-Math.PI/10);
+  ctx.beginPath();
+  ctx.strokeRect(0,0,40,5);
+  ctx.closePath();
+    ctx.stroke();
+
+    ctx.restore();
+}
+ </script>
+</head>
+<body onload='draw();'>
+ <canvas id='c' width=800 height=600></canvas>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Variables and Assignment </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1> Variables and Assignment </h1>
+
+<p> A variable in a programming language is a name given to some storage
+  location for data.  You might think of it as a box that holds something or a
+  piece of paper with something written on it, to keep the boxes or papers
+  separate, we can name them.
+
+<p> Variables are defined in JavaScript using the <kbd>var</kbd> keyword. Examples:
+ <div class=code>var a;		// Defines a single variable named a, but doesn't anything with it.
+var a, b;	// Defines variables a and b.
+var thisIsAReallyLongVariableName;</div>
+
+<p> Variables can also be defined with the <kbd>let</kbd> keyword, which defines
+ a variable with a more limited "<i>scope</i>", but that is a discussion for a
+ later time.  For the time being, just use <kbd>var</kbd> when defining a variable.
+
+<p> <b>Keywords</b> in a language BTW, are words that have a very specific
+ meaning in the language, usually to specifically instruct the computer to do
+ something, and you're not usually allowed to make variables or functions that
+ have the same name, so as not to confuse the computer.
+ 
+<p> Variable names can have letters, numbers and underscores, but must begin
+  with a letter or underscore:
+<div class=code>var ok, _ok2;
+var 3not_ok;</div>
+
+<p> A variable cannot start with a number, because it would confuse the computer
+  into thinking that what follows is a number, so the meaning becomes ambiguous.
+  These rules for variable and function naming are intended to eliminate such
+  ambiguity.
+
+<p> Variables are assigned a value, using the <kbd>=</kbd> or assignment operator:
+<div class=code>a = 10;</div>
+<p> The <kbd>=</kbd> is not like in algebra.  The <kbd>=</kbd> operator stores
+  the value on the right side into the variable specified on the left side.
+  <kbd>=</kbd> is not to be confused w/ <kbd>==</kbd>, the equality test operator
+  which is discussed in Boolean Logic.
+<p> Until a variable is actually given a value, it is <b>undefined</b> and has
+  the <b>undefined</b> "value".
+
+<p> When variables are used on the right side of an assignment, we just use
+  their values, with some exceptions.
+
+<p> We can define a variable and assign it a value in one step:
+<div class=code>var a = 10;</div>
+
+<p>We can change it's value after we've defined it, repeatedly:
+<div class=code>a = 2 + 10;	// Change a from 10 to (2+10) or 12
+//...
+a = "test";	// Now a holds the string "test"</div>
+
+<p> Variables in JavaScript are
+  "<a href='https://en.wikipedia.org/wiki/Strong_and_weak_typing'>loosely-typed</a>"
+  or "<i>weakly typed</i>". They don't care what kind of data they hold, they
+  can hold anything, this is not true in other programming languages, such as C
+  or C++ which are "<i>strongly-typed</i>".
+
+<p> You will note the <kbd>;</kbd> at the end of each variable assignment. Each
+  assignment is a <i>statement</i> and <kbd>;</kbd> is the end-of-statement-marker
+  and works much like the period at the end of a sentence.  You don't always
+  need <kbd>;</kbd>'s in JavaScript, but you should always use them anyway.
+  It's good grammar.
+
+<p> What follows is a demonstration of how two variables <kbd>a</kbd> and
+<kbd>b</kbd> change over time:
+
+<div class=code>// value trace for:			a | b
+//							--+--
+var a, b;		//	undefined | undefined
+  a = 5;		//			5 | undefined
+  b = 10;		//			5 | 10
+  a = a + b;	//	       15 | 10
+  b = a - b;	//	       15 |  5
+  a = "test";	//	   "test" |  5</div>
+
+<h2>Assignment with operations:</h2>
+<p> We often want to modify the value of a variable by adding or subtracting,
+  etc things from it.  Normally this might be accomplished by:
+
+  <div class=code>x = x + 2;	// Takes the value of x, adds two to it and assigns the new
+		    // value back to x.</div>
+
+ <p>There is a shortcut for the generalized form of:<br>
+  <pre style='margin-left: 1in;'>x = x <b><i>op</i></b> <b><i>value</i></b>;</pre>
+
+ <p> Where <b><i>op</i></b> is one of: <kbd>+, -, *, /, %, &amp;, |, ^, &lt;&lt;,
+ >>, >>></kbd> or <kbd>**</kbd>, can be re-written as:<br>
+
+  <pre style='margin-left: 1in;'>x <b><i>op</i></b>= <b><i>value</i></b>;</pre>
+
+ <p>Example:
+ <div class=code>x += 2;	// Same as x = x + 2;
+x *= 5;	// Same as x = x * 5;</div>
+
+</div>
+</body>
+</html>

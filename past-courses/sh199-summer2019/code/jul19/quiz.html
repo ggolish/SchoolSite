@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset='utf-8'>
+ <title> Quiz </title>
+</head>
+<body>
+ <table>
+  <tr>
+   <td colspan=2 id='score'> 0
+  <tr>
+   <td colspan=2 id='msg'>  Click go to start.
+  <tr>
+   <td><input type='radio' name='q' id='ca'> <td id='a'>
+  <tr>
+   <td><input type='radio' name='q' id='cb'> <td id='b'>
+  <tr>
+   <td colspan=2 id='response'>
+ </table>
+ <button onclick='go();'> Go </button>
+ <script>
+ var Q = [
+  {msg: "A or B", a: "A", b: "B", ans: "a"},
+  {msg: "B or A", a: "B", b: "A", ans: "b"}
+ ];
+ var qidx = -1;
+ var score = 0;
+
+ function wronganswer() {
+   get("response").innerHTML = "Incorrect";
+ }
+ function rightanswer() {
+   score++;
+   get("score").innerHTML = score;
+   get("response").innerHTML = "correct";
+ }
+ 
+ function get(x) {
+   return document.getElementById(x);
+ }
+ function go() {
+   var msg = get("msg");
+   var ca = get("ca"), cb = get("cb");
+   var a = get("a"), b = get("b");
+   
+   if (qidx != -1) {
+     if (Q[qidx].ans == "a") {
+       if (ca.checked == false) wronganswer();
+       else rightanswer();
+     } else {
+       if (cb.checked == false) wronganswer();
+       else rightanswer();
+     }
+   }
+   qidx++;
+   msg.innerHTML = Q[qidx].msg;
+   a.innerHTML = Q[qidx].a;
+   b.innerHTML = Q[qidx].b;
+ }
+ </script>
+</body>
+</html>

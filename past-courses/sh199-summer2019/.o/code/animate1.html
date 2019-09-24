@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html onkeydown='key(event);'>
+<head>
+ <title> Beginning animation </title>
+ <meta charset='utf-8'>
+ <style>
+  #c {
+    border: 1px solid black;
+  }
+ </style>
+ <script>
+ var x = 100, y = 100;
+ var dx = 20, dy = 10;
+
+ function key(ev) {
+   var ctx = document.getElementById("c").getContext("2d");
+   
+   ctx.clearRect(0,0,800,600);
+   ctx.strokeStyle="red";
+   x = x + dx;
+   y = y + dy;
+   if (x > 750 || x < 0) dx = -dx;
+   if (y > 550 || y < 0) dy = -dy;
+   ctx.strokeRect(x, y, 50, 50);
+ }
+ </script>
+</head>
+<body>
+ <canvas id='c' width=800 height=600></canvas>
+</body>
+</html>

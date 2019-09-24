@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset='utf-8'>
+ <title> Map </title>
+ <style>
+ #map { border: 1px solid black; }
+ </style>
+</head>
+<body onkeypress='_man.move(event);'>
+<canvas id='map' width=1024 height=768></canvas>
+<script>
+var ctx = document.getElementById("map").getContext("2d");
+
+var _resources = 0;
+function startgame(map) {
+  console.log(_resources);
+  if (++_resources < 3) return;
+  _map.draw();
+  _man.draw();
+}
+
+
+var _man = {
+  img : new Image(),
+  x : 1,
+  y : 1,
+  vx : 1,
+  vy : 1,
+
+  init : function() {
+    this.img.src = "img/man.png";
+    this.img.onload = startgame;
+  },
+  draw : function() {
+    console.log("draw man");
+    ctx.drawImage(this.img, this.vx*_map.tilesize, this.vy*_map.tilesize, _map.tilesize, _map.tilesize);
+  },
+  canmove : function(x, y) {
+    if (_map.map[y][x] == '.') return true;
+    return false;
+  },
+  move : function(e) {
+    console.log(e.key);
+    var ox = this.x, oy = this.y;
+    switch(e.key) {
+      case 'w':
+	if (this.canmove(this.x,this.y-1)) this.y -= 1;
+	break;
+      case 's':
+	if (this.canmove(this.x,this.y+1)) this.y += 1;
+	break;
+      case 'a':
+	if (this.canmove(this.x-1,this.y)) this.x -= 1;
+	break;
+      case 'd':
+	if (this.canmove(this.x+1,this.y)) this.x += 1;
+	break;
+    }
+    if (ox != this.x || oy != this.y) {
+      this.vx = Math.min(xtiles-2, this.x);
+      this.vy = Math.min(ytiles-2, this.y);
+      _map.xo = this.vx - this.x;
+      _map.yo = this.vy - this.y;
+      ctx.clearRect(0,0,1024,768);
+      _map.draw();
+      this.draw();
+    }
+  }
+}
+
+var _map = {
+  tilesize : 24,
+  wall : new Image(),
+  map : null,
+  xo : 0,
+  yo : 0,
+
+  loadmap : function() {
+    var req = new XMLHttpRequest();
+    req.open("GET", "map", true);
+    req.overrideMimeType("text/plain");
+    req.onreadystatechange = function() {
+      if (req.readyState == 4 && req.status == 200) {
+	_map.map = req.responseText.split("\n");
+	startgame();
+      }
+    }
+    req.send(null);
+  },
+
+  init : function() {
+    this.wall.src = "img/wall.png";
+    this.wall.onload = startgame;
+    this.loadmap();
+  },
+
+  draw : function() {
+    for(var r = 0; r < this.map.length; r++) {
+	var y = r + this.yo;
+	if (y < 0 || y > ytiles) continue;
+	for(var c = 0; c < this.map[r].length; c++) {
+	  var x = c + this.xo;
+	  if (x < 0 || x > xtiles) continue;
+	  if (this.map[r][c] == "#")
+	    ctx.drawImage(this.wall, x*this.tilesize, y*this.tilesize, this.tilesize, this.tilesize);
+      }
+    }
+  }
+};
+
+var xtiles = Math.floor(1024 / _map.tilesize);
+var ytiles = Math.floor(768 / _map.tilesize);
+
+_map.init();
+_man.init();
+
+</script>
+</body>
+</html>

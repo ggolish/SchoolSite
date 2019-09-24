@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Number Guess Game</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+</head>
+<body onload="gameStart()" onkeydown="checkKey(event)">
+  <div class="container">
+    <h3>Number Guessing Game</h3>
+    <input type="number" id="guess" placeholder="Enter your guess...">
+    <button onclick="guess()">Submit</button><br>
+    <textarea disabled id="game-status" style="margin-top: 5px;" rows=2 cols=50></textarea>
+    <h5>Previous Guesses:</h5>
+    <ul id="previous-guesses"></ul>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

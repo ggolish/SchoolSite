@@ -1,0 +1,18 @@
+A program that can encode and decode text using a ceaser cipher.
+
+Usage: ./ceaser [-f <input-file>] [-o <output-file>] [-h] <-d or -e>
+
+Options:
+    -f <input-file>  => The file to use as input. If excluded, stdin will be
+                        used.
+
+    -o <output-file> => The file to write to. If excluded, stdout will be
+                        used.
+
+    -d               => The input will be decoded using the secret alphabet.
+
+    -e               => The input will be encoded using the secret alphabet.
+                        This is the default function.
+
+    -h               => Prints usage information and exits.
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset='utf-8'>
+ <title> Ship </title>
+ <style>
+ #c { border: 1px solid black; }
+ </style>
+</head>
+<body>
+<canvas id='c' width=1024 height=768></canvas>
+<script>
+var ship = {
+  x : 10,
+  y : 10,
+  dx : .5,
+  dy : .2,
+  angle : 0,
+  da : 1,
+
+  draw : function() {
+    var ctx = document.getElementById("c").getContext("2d");
+    ctx.clearRect(0,0,1024,768);
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 3;
+    ctx.save();
+    ctx.translate(this.x,this.y);
+    ctx.scale(.5,.5);
+    ctx.rotate(this.angle*Math.PI/180);
+    ctx.beginPath();
+    ctx.moveTo(100,0);
+    ctx.lineTo(-100,50);
+    ctx.lineTo(-100,-50);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.restore();
+  },
+  update : function() {
+    this.x = this.x + this.dx;
+    this.y = this.y + this.dy;
+    this.angle = this.angle + this.da;
+  }    
+};
+
+function update() {
+  ship.draw();
+  ship.update();
+  setTimeout(update, 33);
+}
+
+setTimeout(update, 33);
+
+</script>
+</body>
+</html>

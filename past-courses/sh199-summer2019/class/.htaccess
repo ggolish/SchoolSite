@@ -1,0 +1,3 @@
+Options +Indexes
+#allow from 139.102.55.
+#deny from all

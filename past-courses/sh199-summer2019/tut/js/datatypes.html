@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Data Types </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1> Primitive Data-types and Constants </h1>
+
+<p> Before discussing data-types it might be useful to ask the question, "What
+  is data?"
+
+<p> Data is: ...
+
+<p> In JavaScript these are the "primitive" (i.e. the most basic) data types:
+<ul>
+ <li> Numbers: <b>5</b>, <b>-10</b>, <b>10.5</b>, <b>5e-15</b>
+ <li> Boolean: <b>true</b> &amp; <b>false</b>
+  <ul>
+   <li> Boolean values and expressions are either <b>true</b> or <b>false</b>
+     and can be nothing else.
+  </ul>
+ <li> Strings: <b>"Hello, world!"</b>, <b>'abc'</b>
+  <ul>
+   <li> Composed of characters enclosed by single or double quotes.
+  </ul>
+ <li> Arrays: <b>[1, 2, "abc", true]</b>
+  <ul>
+   <li> A list of data items.  If a data item was a piece of paper, an array
+      is like a folder holding the papers, or a book.
+   <li> Each item in the array has an index location (like the papers location
+      in the folder or stack of papers or page number in a book.) This index
+      starts at 0 and increases by one for each item.
+   <li> Every element in an array can be any data type as well.
+  </ul>
+ <li> Objects: <b>{ name:"value", foo: 1, bar: [1,2] }</b>
+  <ul>
+   <li> To talk about later, but they are a lot like arrays, but we can use
+       a name to refer to each data item rather than an index number.
+   <li> Like arrays, every value associated with a name can be a different
+       data-type.
+  </ul>
+ <li> Bottom types: <b>undefined</b> / <b>null</b>
+  <ul>
+   <li> They have no real intrinsic value, but indicate something about a
+      variable, namely that it contains no value.
+   <li> A variable that has not been defined or given a value or a location in
+     an array that has not been given a value is <b>undefined</b>.
+   <li> <b>null</b> is mostly used to clear a variable of a pre-existing value
+     or used to indicate that something that might normally point to an object
+     is not currently doing so.
+   <li> Either might be used to indicate an error condition when used as the
+     return value from a function.  When used in Boolean expressions both are
+     considered <b>false</b>.
+  </ul>
+</ul>
+<p> Data values like <b>10</b>, <b>"test"</b>, <b>true</b>, etc, are called
+   "<i>literals</i>" or "<i>constants</i>", because they cannot be modified,
+   they are <i>literally</i> that value.
+
+</div>
+</body>
+</html>

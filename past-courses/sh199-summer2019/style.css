@@ -1,0 +1,136 @@
+body {
+  background: #444444;
+  font-size: 11pt;
+  font-family: Arial;
+  padding: 0px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h3 {
+  color: red;
+}
+
+kbd { font-weight: bold; }
+
+section {
+  border: 1px solid #EEEEEE;
+  border-radius: 3px;
+  box-shadow: 3px 3px 2px #CCCCCC;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+nav ul {
+  list-style: none;
+  padding-left: 0px;
+  margin-left: 0px;
+}
+
+nav li {
+  background: #EEEEEE;
+  display: box;
+  border: 1px solid #EEEEEE;
+  box-shadow: 3px 3px 2px #CCCCCC;
+  padding: 2px;
+  margin-bottom: 5px;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+}
+
+.body {
+  background: white;
+  border-radius: 2px;
+  padding: 30px;
+}
+
+.b {
+  font-weight: bold;
+}
+
+.m {
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.indent {
+  padding-left: 25px;
+}
+
+nav {
+  border-right: 1px solid black;
+  padding-right: 15px;
+  margin-right: 15px;
+  min-width: 150px;
+}
+
+.main {
+}
+
+.cal td:first-child {
+  font-weight: bold;
+  width: 80px;
+}
+.assignments {
+  list-style-type: none;
+  counter-reset: ex-counter ol-counter lab-counter;
+}
+.assignments> li {
+  margin-bottom: -10px;
+  position: relative;
+  padding: 8px;
+  border: 1px solid #888;
+}
+.assignments> li:before {
+  position: absolute;
+  top: 0px;
+  left: -60px;
+  background: #0288d1;
+  color: white;
+  font-size: 24px;
+  width: 52px;
+  text-align: center;
+  content: counter(ol-counter);
+  counter-increment: ol-counter;
+}
+.assignments> li.extra:before {
+  position: absolute;
+  top: 0px;
+  left: -60px;
+  background: #da2025;
+  color: white;
+  font-size: 24px;
+  width: 52px;
+  text-align: center;
+  content: 'X' counter(ex-counter);
+  counter-increment: ex-counter;
+}
+.assignments> li.lab:before {
+  position: absolute;
+  top: 0px;
+  left: -60px;
+  background: #da2025;
+  color: white;
+  font-size: 24px;
+  width: 52px;
+  text-align: center;
+  content: 'L' counter(lab-counter);
+  counter-increment: lab-counter;
+}
+.assignments> li.quiz:before {
+  position: absolute;
+  top: 0px;
+  left: -60px;
+  background: #f57c00;
+  color: white;
+  font-size: 24px;
+  width: 52px;
+  text-align: center;
+  content: 'P' counter(lab-counter);
+  counter-increment: lab-counter;
+}

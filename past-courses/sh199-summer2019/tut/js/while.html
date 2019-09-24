@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Title </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1> Loops </h1>
+<p> Loops are the repeated execution of some segment of code for as long as a
+  specific condition remains true.
+
+<p> The simplest form of loop is the "while" loop, which executes it's statement
+  for as long as its expression remains true:<br><br>
+
+<kbd style='margin-left:.5in'>while (<b><i>expression</i></b>) <b><i>statement</i></b></kbd>
+<p> Note that the ()'s that surround the expression are not optional, just like
+with the if statement. In many ways a while loop is like an if-statement,
+except that where an if-statement executes its statement only once if the
+expression is true, a while-loop will continue to execute its statement for
+as long as its expression is true.
+
+<p>Examples:
+<div class=code>while (true) console.log("Print forever");
+// This loop will never stop, since the expression is always true.</div>
+<br>
+<div class=code>var i=0;
+while (i &lt; 10) console.log(i++);</div>
+<p>The above prints 0 through 9. Remember that '<kbd>i++</kbd>' gives it's value
+before incrementing.  When <kbd>i</kbd> becomes 10, the expression is no longer
+true, so the execution moves on to the statements that follow the while loop.
+<br><br>
+<div class=code>var i = 0;
+while (i < 10) {
+  console.log(i);
+  i = i + 1;
+}</div>
+<p>The same as the previous but using a compound statement and moving the increment
+of <kbd>i</kbd> outside of the <kbd>console.log()</kbd> function.
+<br><br>
+<div class=code>// A function to find the length of a string (don't use this, use s.length
+// instead:
+function strlen(s) {
+  var i = 0;
+  // As long as the character at index i is not undefined, keep incrementing
+  // the index.  When this stops the index i will be equal to the length of
+  // the string.
+  while (s[i] !== undefined) i++;
+    return i;
+}</div>
+
+<h3> The do-while loop </h3>
+<p>An upside-down variant of while is the do-while loop:
+
+<pre style='margin-left:.5in'>do
+  <b><i>statement</i></b>
+while (<b><i>expression</i></b>);</pre>
+
+<p> This loop will execute <b><i>statement</i></b> at least once, since it done
+  before the expression in the while part is tested.  If the expression is true
+  it will go back to the top and do the <b><i>statement</i></b> again.  For
+  clarity purposes <b><i>statement</i></b> should always be a compound statement,
+  i.e. a sequence of one or more statements enclosed in <kbd>{}</kbd>'s (curly
+  braces.)
+
+<div class=code>do {
+  console.log("Print once");
+} while (false);</div>
+
+<p> Still prints once, even though expression can never be true.
+<br><br>
+<div class=code>var i = 0;
+do {
+  console.log(i++);
+} while (i &lt; 10);</div>
+
+<p> Still prints 0 - 9.
+
+
+</div>
+</body>
+</html>

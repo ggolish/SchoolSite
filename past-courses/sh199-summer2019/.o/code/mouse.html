@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html onmousemove='move(event);' onmousedown="button(event);">
+<head>
+ <title> Mouse events </title>
+ <meta charset='utf-8'>
+ <style>
+  td {
+    border: 1px solid black;
+    width: 100px; height: 100px;
+    text-align: center;
+  }
+ </style>
+ <script>
+ function move(ev) {
+   document.getElementById("x").innerHTML = ev.clientX;
+   document.getElementById("y").innerHTML = ev.clientY;
+ }
+ function button(ev) {
+   document.getElementById("button").innerHTML = ev.button;
+ }
+ </script>
+</head>
+<body>
+ <h1> Mouse events </h1>
+ <table>
+  <tr>
+   <td> clientX <td id='x'>
+  <tr>
+   <td> clientY <td id='y'>
+  <tr>
+   <td> button <td id='button'>
+ </table>
+</body>
+</html>

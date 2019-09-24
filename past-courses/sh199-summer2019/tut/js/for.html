@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Title </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1>The for-loop:</h1>
+<p>Many loops have the form:
+
+<pre style='margin-left:.5in;'><i>initilize some index variable(s)</i>
+while (<i>test expression</i>) {
+  <i>statements</i>
+  <i>increment index variable(s)</i>
+}</pre>
+
+<p> so a specific type of loop was created to handle this form specifically, it
+  is the "<kbd>for</kbd>" loop:
+  
+<p><kbd style='margin-left:.5in;'>for(<i>init expr</i>; <i>test expr</i>; <i>inc expr</i>) <i>statement</i></kbd>
+
+<p> All three expressions are optional and may be omitted, however the
+   <kbd>;</kbd>'s must remain present. i.e.:
+      
+<p><kbd style='margin-left:.5in;'>for(;;) <i>statement</i>;	// Will loop forever.</kbd>
+
+<p style='margin-left: .5in;'> <b><i>init expr</i></b> is only performed once.
+  You may declare variables using <kbd>var</kbd> inside this expression.
+<p style='margin-left: .5in;'> <b><i>test expr</i></b> is performed at the
+   beginning of each loop, performing the <i>statement</i> only if this is true.
+   <b>If omitted it is always true.</b>
+<p style='margin-left: .5in;'> <b><i>inc expr</i></b> is performed after the
+  statement (or compound statement) at the end of each loop.  This is always
+  executed even if a <kbd>continue</kbd> is raised.
+
+<p> Examples:
+
+<p><div class=code>// print 0 to 9:
+for(var i=0; i &lt; 10; i++) {
+  console.log(i);
+}</div>
+ 
+<p><div class=code>// print 10 down to 0:
+for(i=10; i >= 0; i--) console.log(i);</div>
+  
+<p><div class=code>/**
+ * print from 'start' to 'end', skipping 'skip' steps after each output.
+ */
+for(i=start; i < end; i+=skip) console.log(i);</div>
+
+<p><div class=code>/**
+ * Prints n as a binary string.
+ */
+function binary(n) {
+  var b = [];
+  for (var i = 0; n > 0; i++) {
+    b[i] = n % 2;
+    n = Math.floor(n / 2);
+  }
+  return b.reverse().join("");
+}</div>
+
+<p><div class=code>// Given an array a:
+var a = [1, 5, 20, -6, 35, -100, 50, 40, 16];
+
+// Find the largest element of a:
+var max = a[0];
+for(var i=1; i &lt; a.length; i++) {
+  if (max &lt; a[i]) max = a[i];
+}
+console.log("The largest element in a is: " + max);</div>
+
+<p><div class=code>// Find the second largest element:
+var max = Math.max(a[0], a[1]);
+var second = Math.min(a[0], a[1]);
+
+for(var i = 2; i &lt; a.length; i++) {
+  if (max &lt; a[i]) {
+    second = max;
+    max = a[i];
+  }
+  if (second &lt; a[i] &amp;&amp; a[i] &lt; max) second = a[i];
+}
+console.log("The second largest element of a is: " + second);</div>
+
+<p><div class=code>// Prints 3, 4, 5 and 6 only:
+for(i=0; i &lt; 10; i++) {
+  if (i &lt; 3) continue;
+  if (i > 6) break;
+  console.log(i);
+}</div>
+
+<p><div class=code>// Count the number of times the character 's' is found in str:
+var str = "some string";
+var ss = 0;
+for(var i=0; i &lt; str.length; i++) {
+  if (str[i] == 's') ss++;
+}
+console.log("# of S's = " + ss);</div>
+
+<p><div class=code>/**
+ * Returns the sub-string starting at offset and up to length bytes (or the
+ * end of the string if not given.
+ */
+function substr(str, offset, length) {
+  // If length is "undefined" it wasn't passed to the function so we give it
+  // a default value:
+  if (typeof length == "undefined") length = str.length;
+  // If offset is not within the string, return an empty string:
+  if (offset &lt; 0 || str.length &lt;= offset) return "";
+  // Loop copies characters from str starting at offset 
+  var s = "";
+  for( ;str[offset] !== undefined &amp;&amp; length > 0; offset++, length--) {
+    s += str[offset];
+  }
+  return s;
+}</div>
+
+<p><div class=code>/**
+ * Reverse the string s:
+ */
+function reverse(s) {
+  var r = "";
+  for(var i=s.length-1; i >= 0; i--) {
+    r += s[i];
+  }
+  return r;
+}</div>
+  
+
+<p><div class=code>/**
+ * Returns the index of "needle" in "haystack" or -1 if not found.
+ */
+function locate(haystack, needle) {
+  var i = 0;
+  for(; i &lt; haystack.length; i++) {
+    if (haystack[i] === needle) return i;
+  }
+  return -1;
+}</div>
+
+</div>
+</body>
+</html>

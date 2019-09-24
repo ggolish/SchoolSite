@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Creating a node.js script </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1> Creating a node.js (JavaScript) script/program </h1>
+<p> In this class we run JavaScript programs via <a href='http://nodejs.org'> node.js </a>
+which allows us to run JavaScript as command line programs.  This gives us an
+environment which is similar to those used by C or C++ which will be learned in
+later CS courses, while potentially being a bit easier for the beginner.
+
+<p> A node JavaScript program is just a text file that begins with the following
+first line:
+<div class=code>#!/usr/local/bin/node</div>
+<br>
+
+and the remainder of the text file is the JavaScript program itself.  The 
+characters <kbd>#!</kbd> inform the operating system that the program that 
+follows should interpret the text that follows. <kbd>/usr/local/bin/node</kbd> 
+is then the path to the node interpreter.  An interpreter is simply a program 
+that reads source (the program you write) and "interprets" it by carrying out 
+the instructions laid out by the source.
+
+<p>What follows is a simple program example.  It is often referred to as a
+"Hello, world!" program.  A program traditionally written first by someone
+learning a new programming language.
+
+<div class=code>#!/usr/local/bin/node
+
+console.log("Hello, world!");</div>
+
+<p> The above text can be saved into a text file and then made into an "executable"
+JavaScript program (i.e. it can be "run", just like any other Unix command, such
+as ls or cp or your favorite editor (i.e. kate)) by setting the execute permissions
+on the text file.
+
+<p> Supposing the above was saved as the file <kbd>hello.js</kbd>, we can make
+it executable by performing the following "chmod" command, and then we can run it
+
+<div class=term>cs15199@cs:~/> chmod a+rx hello.js
+cs15199@cs:~/> ./hello.js
+Hello, world!
+cs15199@cs:~/>
+</div>
+
+<p> Let us now deconstruct the one and only <i>statement</i> -- a command or
+instruction to the computer to be carried out. In our "Hello, world!"
+program, reading it from left to right: First is the word "console". 
+<b>console</b> is a JavaScript object that represents a collection of
+properties (think names and values) and methods (often called functions or
+smaller, self contained programs within the larger program) that relate to
+outputting text to the console or in our case, the terminal window.  The next
+word "log" refers to one of the methods within the console object that outputs
+its input (which we'll get into shortly) to the console.  There are other
+methods, such as "error", "warn" and "info" which more or less do the same thing
+in our case, but if you ever use JavaScript in a browser, allows the system to
+route the messages differently.
+
+<p> Your browser has a console, similar to your terminal window.  It can be
+accessed usually by pressing the key combination <kbd>Ctrl-Shift-j</kbd> or
+<kbd>Ctrl-Shift-k</kbd>.  You might also be able to access it from your browsers
+menus via <b>Tools &rarr; Web Developer &rarr; Web Console</b> or the like.
+
+<p> The next item of interest are the <kbd>()</kbd>'s that contain the
+<i>string</i> <b> "Hello, world!"</b>.  The <kbd>()</kbd> are the "call"
+operator and the data inside of it, separated by commas are the <i>parameters</i>
+to the <i>function call</i>.  So the string "Hello, world!" is passed to the log
+function in the console object to be printed to the console log.
+
+<p> And with that we have made our first JavaScript program.
+
+</div>
+</body>
+</html>

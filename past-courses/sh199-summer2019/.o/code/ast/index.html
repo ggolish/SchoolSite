@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html onkeydown='key(event);' onkeyup='keyup(event);'>
+<head>
+ <meta charset='utf-8'>
+ <title> </title>
+ <style>
+ body { margin: 0; overflow: hidden;}
+ #c {  }
+ #score { 
+   position: fixed; top: 0px; left: 0px;
+   z-index: 10;
+ }
+ #gameover {
+  font-family: "Arial";
+  color: white;
+  text-shadow: 0px 0px 20px black;
+  font-size: 72pt;
+  position: fixed;
+  top: 0px; left: 0px;
+  z-index: 100;
+  display: none;
+ }
+ </style>
+ <script src='ui.js'></script>
+ <script src='ship.js'></script>
+ <script src='rock.js'></script>
+</head>
+<body onresize='resize();' onload='init();'>
+<canvas id='c'></canvas>
+<canvas id='score'></canvas>
+<div id='gameover'> Game Over </div>
+</body>
+</html>

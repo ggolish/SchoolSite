@@ -1,0 +1,37 @@
+JSON encoding data:
+==================
+var data = JSON.parse(<string>);
+ - Returns JavaScript data parsed from <string>.
+
+var string = JSON.stringify(<data>);
+ - Converts the JavaScript data <data> to a JSON encoded string, suitable for
+   storage or transmission.
+
+Web-sockets:
+-----------
+- Creates a persistent connection to a server (e.g. one created in node.js)
+  that supports web-socket communications.
+
+On the client:
+=============
+var sock = new WebSocket("ws://<host>:<port>/", <optional protocol>);
+ ex: ws://cs.indstate.edu:60000/
+ - Use wss for SSL secured socket connections.
+
+// We cannot send data until the connection is opened, we can set a callback
+// to fire when the connection is finalized:
+sock.onopen = function(event) {
+  // Now safe to send data to the server.
+}
+ 
+// setup a listener callback for when we recieve data on the socket:
+sock.onmessage = function(msg) {
+  // received data in: msg.data
+}
+
+sock.send(<data>);
+ - send data to the server.  Data may be a string, Blob, or ArrayBuffer.
+
+sock.close();
+ - closes the connection.
+

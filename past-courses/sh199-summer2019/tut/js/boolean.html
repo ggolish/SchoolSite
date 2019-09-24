@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Boolean Logic </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+<style>
+.tl> tbody> tr> th { vertical-align: top; text-align: left; width: 75px; }
+.tt td { min-width: 30px; text-align: center;}
+.tt td:last-child, .tt th:last-child { border-left: 1px solid black; }
+.tt th:last-child { min-width: 75px; }
+.tt th { border-bottom: 1px solid black; }
+.ttl td:nth-last-child(2), .ttl th:nth-last-child(2) { border-left: 1px solid black; min-width: 120px; }
+.ttl th:last-child { min-width: 120px; }
+.ttl { margin-left: 20px; }
+.m { font-family: monospace; }
+</style>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1> Boolean Logic: </h1>
+<ul>
+ <li> Boolean algebra was developed by George Boole in the mid 1800's.
+
+ <li> In Boolean logic a statement is either <b>true</b> or <b>false</b>.  It
+   cannot be anything else. All variables in a Boolean algebra expression
+   evaluate to either true or false as well.
+
+ <li> In most cases we will use 0 to represent <b>false</b> and 1 (or any
+   non-zero value) to represent <b>true</b>.  Note though that in JavaScript
+   that a comparison against <b>true</b> and a numeric value other than 1 will
+   evaluate to false, i.e. (10 == true) is <b>false</b> and (1===true) is also
+   false because the types on both sides of the comparison do not match.
+
+ <li> You can combine Boolean statements together with the fundamental Boolean
+  operations: AND (<b>&amp;&amp;</b>), OR (<b>||</b>), and NOT (<b>!</b>)
+  (and XOR (<b>!=</b>)) which will still result in an expression that is either
+  <b>true</b> or <b>false</b>.
+</ul>
+
+<h2>Comparison operations:</h2>
+
+<h3> Mathematical comparisons</h3>
+<p> These give a Boolean value (<b>true</b> or <b>false</b>) depending on the
+  outcome of the comparison operation. </p>
+
+<table style='margin-left: 20px;'>
+<tr><th style='border-bottom: 2px solid black;'> Operation:
+    <th style='border-bottom: 2px solid black;'> True when:
+<tr>
+ <td> a <b>&lt;</b> b  <td> a is less than b
+<tr>
+ <td> a <b>&lt;=</b> b	<td> a is less than or equal to b
+<tr>
+ <td> a <b>></b> b <td> a is greater than b
+<tr>
+ <td> a <b>>=</b> b <td> a is greater than or equal to b
+<tr>
+ <td> a <b>==</b> b <td> a is equal to b
+<tr>
+ <td> a <b>!=</b> b <td> a is not equal to b
+<tr>
+ <td> a <b>===</b> b <td> a is equal to b and both are the same type (strict equality)
+<tr>
+ <td> a <b>!==</b> b <td> a is not equal to b and both are the same type (strict inequality)
+</table>
+<br>
+Examples:
+<table style='margin-left: 20px;'>
+<tr>
+ <td class='m'> 1 &lt; 2  <td> is <b>true</b><td style='width:50px;'> <td class='m'>2 &lt; 1  <td> is <b>false</b>
+<tr>
+ <td class='m'> 2 == 3 <td> is <b>false</b> <td> <td class='m'> 2 != 3 <td> is <b>true</b>
+<tr>
+ <td class='m'> 5 === 5 <td> is <b>true</b> <td> <td class='m'> "5" === 5 <td> is <b>false</b> (types do not match)
+</table>
+
+<p>
+  We can also compare strings in JavaScript.  Strings are compared
+  alphabetically, i.e. "a" comes before "b" and so on. Capital letters come
+  before lower case letters, i.e. "Z" &lt; "a".
+
+<table style='margin-left: 20px;'>
+<tr>
+ <td class='m'>  "abb" &lt; "abc"	<td> is <b>true</b>
+<tr>
+ <td class='m'>  "abc" > "Z"	<td> is <b>true</b>
+</table>
+
+<p>
+  Numbers are type converted into strings for comparison against other strings,
+  use === or !== to avoid type conversion.
+
+<table style='margin-left: 20px;'>
+<tr>
+ <td class='m'> "2" &lt;= 2 <td> is <b>true</b> <td style='width:50px;'>	 <td class='m'>"3" > 2 <td> is <b>true</b>
+<tr>
+ <td class='m'> "2" == 2 <td> is <b>true</b> <td>	 <td class='m'>"2" === 2 <td> is <b>false</b>
+</table>
+
+<h2> Boolean Operators and Truth Tables:</h2>
+
+<p> A truth table is a table of all inputs (represented as 0 for false and 1 for
+  true) and the resulting output of the operation.  We will use truth tables to
+  describe the Boolean operations:
+
+<p>
+<table class='tl'>
+<tr><th> NOT
+ <td> NOT a is the reverse of a, i.e. true if a is false and false if a is
+	  true.  In JavaScript <b>!</b> is the Logical NOT operator.<br>
+	  Example: <b>!</b> a
+<tr><td><td>
+<table class='tt'>
+ <tr><th> a <th> !a
+ <tr><td> 0 <td> 1
+ <tr><td> 1 <td> 0
+</table>
+</table>
+
+<table class='tl'>
+<tr><th> AND
+  <td> a AND b is true if and only if both a and b are true.  In JS <b>&amp;&amp;</b>
+     is the Logical AND operator.<br>Example: a &amp;&amp; b
+  <table class='tt'>
+  <tr><th>a <th> b <th> a &amp;&amp; b
+  <tr><td> 0 <td> 0 <td>   0
+  <tr><td> 0 <td> 1 <td>   0
+  <tr><td> 1 <td> 0 <td>   0
+  <tr><td> 1 <td> 1 <td>   1
+  </table>
+</table>
+
+<table class='tl'>
+<tr><th> OR
+ <td> a OR b is true if either a or b is true.  In JS <b>||</b> is the Logical
+   OR operator.<br> Example: a || b
+ <table class='tt'>
+  <tr><th> a <th> b <th> a || b
+  <tr><td> 0 <td> 0 <td>   0
+  <tr><td> 0 <td> 1 <td>   1
+  <tr><td> 1 <td> 0 <td>   1
+  <tr><td> 1 <td> 1 <td>   1
+ </table>
+</table>
+
+<table class='tl'>
+<tr><th> XOR
+ <td> a XOR b is true only if a and b are not the same. This is essentially the
+      <b>!=</b> (not equal) operator.
+ <table class='tt'>
+  <tr><th> a <th> b <th> a != b
+  <tr><td> 0 <td> 0 <td>    0
+  <tr><td> 0 <td> 1 <td>    1
+  <tr><td> 1 <td> 0 <td>    1
+  <tr><td> 1 <td> 1 <td>    0
+ </table>
+</table>
+
+<p> Operations are combined left to right.  Use () to force the order of
+  evaluation.
+  <table class='m'>
+  <tr><td> a &amp;&amp; b || c
+   <th style='width: 100px;'> &rarr;
+   <td> (a &amp;&amp; b) || c
+   <th style='width: 100px;'> !=
+   <td> a &amp;&amp; (b || c)
+  </table>
+<p>
+
+<table class='tt ttl'>
+ <tr><th> a <th> b <th> c <th> (a &amp;&amp; b) || c <th> a &amp;&amp; (b || c)
+ <tr><td> 0 <td> 0 <td> 0 <td>        0       <td>       0
+ <tr><td> 0 <td> 0 <td> 1 <td>        1       <td>       0
+ <tr><td> 0 <td> 1 <td> 0 <td>        0       <td>       0
+ <tr><td> 0 <td> 1 <td> 1 <td>        1       <td>       0
+ <tr><td> 1 <td> 0 <td> 0 <td>        0       <td>       0
+ <tr><td> 1 <td> 0 <td> 1 <td>        1       <td>       1
+ <tr><td> 1 <td> 1 <td> 0 <td>        1       <td>       1
+ <tr><td> 1 <td> 1 <td> 1 <td>        1       <td>       1
+</table>
+
+<p> More examples:
+<table>
+<tr><td class='m'>  (5 &lt; 4) || (4 &lt; 5)		<td> is <b>true</b>
+<tr><td class='m'>  (4 &lt; 5) &amp;&amp; (3 &lt; 3)	<td> is <b>false</b>
+</table>
+</div>
+</body>
+</html>

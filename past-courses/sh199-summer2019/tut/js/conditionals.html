@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Conditionals </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1>Conditionals</h1>
+
+<p> Sometimes we want to only execute some code given some conditions.  We can
+  do this using a conditional statement.  The most common form of this is the
+  if/else statement:
+
+<div class=code>if (expression) statement </div>
+
+<p>  This will only execute "statement" if the expression inside of the ()'s
+  evaluates to "true". "statement" can be a compound statement (statements
+  enclosed in {}'s, like:
+
+<div class=code>if (expression) {
+  statement1;
+  statement2;
+  etc;
+}</div>
+
+<p> Sometimes we want to two (or more) different code paths depending on the
+  result of the initial expression.  We can do this with an "else" part to the
+  if:
+
+<div class=code>if (expr) statement1;
+else statement2;</div>
+
+<p> This will execute statement1 if expr is true, or it will execute statement2
+  if expr is false.  Either or both of statement1 or 2 can be compound
+  statements:
+
+<div class=code>if (expr) {
+  statements;
+} else {
+  statements;
+}</div>
+
+<p> example:
+<div class=code>// Make an "alias" for console.log() called "print"
+var print=console.log;
+// Make an "alias" for process.argv:
+var argv = process.argv;
+// Get a and b from the command line and convert them into integers:
+var a = parseInt(argv[2]);
+var b = parseInt(argv[3]);
+
+if (a < b) {
+  print(a + " is less than " + b);
+} else if (a > b) {
+  print(a + " is greater than " + b);
+} else {
+  print(a + " is equal to " + b);
+}</div>
+
+</div>
+</body>
+</html>

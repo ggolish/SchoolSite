@@ -1,0 +1,3 @@
+#!/bin/bash
+
+kate $(find . -path ./.\* -prune -o -type d -o -print) </dev/null >& /dev/null &

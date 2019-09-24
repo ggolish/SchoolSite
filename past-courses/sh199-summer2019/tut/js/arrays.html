@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Arrays </title>
+  <script src='../../../ace/src-min-noconflict/ace.js'></script>
+  <link rel='stylesheet' href='../style.css'>
+  <script>
+  function aceify() {
+    var codes = document.getElementsByClassName("code");
+    for(i in codes) {
+      var ed = ace.edit(codes[i]);
+      ed.setTheme("ace/theme/tomorrow");
+      ed.getSession().setMode("ace/mode/javascript");
+      ed.setAutoScrollEditorIntoView(true);
+      ed.setOption("maxLines", 30);
+      ed.setOption("minLines", 1);
+      ed.setOption("readOnly", true);
+      ed.setOption("highlightActiveLine",false);
+    }
+  }
+  </script>
+</head>
+<body onload='aceify();'>
+<div class=container>
+<h1>Arrays:</h1>
+<p> Arrays are like a folder of data items.  Like strings, data items within an
+  array are indexed starting at 0.  Like strings if there is no data at a
+  specific index, then the result is "<i>undefined</i>".  Unlike strings, arrays
+  may hold any kind of data at each location and may even have "holes" in
+  the array.
+
+<p> Arrays are created using square brackets:
+<div class=code>var a  = [ 1, 2, 3 ];	// An array holding three numbers.
+var a2 = [ 1, 2, "three", , "five" ];
+// An array with numbers and strings and nothing at index 3.</div>
+
+<h3> Useful properties and methods </h3>
+<p><b>.length</b> - Gives the length of array (or highest index + 1).
+
+<p><b>.join</b>(<i>separator</i>) - method to join items in the array together with
+   the string passed to join (<i>separator</i>) between each element.
+<div class=code>a.join(" ");	// outputs "1 2 3"
+a.join(",");	// outputs "1,2,3"
+a.join("");		// outputs "123"</div>
+
+<p><b>.reverse</b>() - Reverses elements in an array.
+<div class=code> "abc".split("").reverse().join(""); // returns "cba"</div>
+
+<p> Methods can be chained together.  The above splits the string <kbd>"abc"</kbd>
+ into an array <kbd>['a', 'b', 'c']</kbd>, then reverses it to
+ <kbd>['c', 'b', 'a']</kbd> then joins the elements together into <kbd>'cba'</kbd>.
+
+<h3> Multi-dimensional arrays: </h3>
+<p> One can have arrays inside of arrays, like:
+
+<div class=code>var m = [[1,2,3],[4,5,6],[7,8,9]]; // A 2-dimensional array</div>
+
+<p> To access an element you can chain the indexes, they are read from left
+    to right, i.e.:
+    <table style='margin-left:.5in;'>
+      <tr><td colspan=3><kbd>m[i][j]</kbd>  where:
+      <tr><td> <kbd>i</kbd> <td> = <td> index into the primary array.
+      <tr><td> <kbd>j</kbd> <td> = <td> index into the sub-array.
+    </table>
+
+<p>   Example:
+   <div class=code>m[0][2] == 3;
+m[1][0] == 4;</div>
+
+<h3> Other useful array properties and methods </h3>
+
+<p><b>.push</b>(<i>value</i>) - Adds <i>value</i> to the end of the array.
+Example:
+<div class=code>var a = [];
+a.push(3); a.push(2); a.push(1); // a == [3, 2, 1]</div>
+
+<p><b>.pop</b>() - Removes the last element from an array and returns it.
+Example:
+<div class=code>var data = a.pop();	// data == 1; a == [3, 2]</div>
+
+<p><b>.unshift</b>(<i>value</i>) - Adds <i>value</i> to the beginning of an
+array. Example:
+<div class=code>a.unshift(2); a.unshift(1);	// a == [1, 2, 3, 2];</div>
+
+<p><b>.shift</b>() - Removes the first element from an array and returns it. Example:
+<div class=code>var data = a.shift();		// data == 1; a == [2, 3, 2];</div>
+
+<p><b>.indexOf</b>(<i>value</i>) - Returns the first index of an element matching
+<i>value</i> or -1 if not found. Example:
+<div class=code>a.indexOf(2) === 0;</div>
+
+<p><b>.forEach</b>(<i>func</i>) - Calls the function <i>func</i> for each individual
+element in the array, passing the function the value of the element. Example:
+<div class=code>// Print out all the elements of the array a:
+a.forEach(function (val) { console.log(val); });</div>
+
+
+</div>
+</body>
+</html>
