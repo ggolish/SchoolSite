@@ -28,6 +28,9 @@
     h1, h3 {
         text-decoration: underline;
     }
+    ul {
+        list-style-position: outside;
+    }
   </style>
   <title>Gage Golish</title>
 </head>
@@ -46,12 +49,12 @@
         currently serve as a graduate assistant for the Math and Computer 
         Science Department. My duties include teaching courses, tutoring 
         students, and completing assigned tasks. My primary
-        career interests are in machine learning, data science, and artificial 
-        intelligence.</p>
+        career interests are in software development and machine learning.</p>
         <b>Links:</b>
         <ul>
           <li><a href="resources/gage_resume.pdf" target="_blank">Resume</a></li>
           <li><a href="https://github.com/ggolish" target="_blank">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/gage-golish-7a8071136/" target="_blank">Linkedin</a></li>
           <li><a href="https://cs.indstate.edu" target="_blank">Math and Computer Science Department</a></li>
         </ul>
       </div>
@@ -80,7 +83,23 @@
         <h3>Research / Projects:</h3>
         <ul>
           <li>
-            <b>NEATpy</b>: A Python 3 package for evolving neural networks 
+            <b>Current Research:</b> I am currently involved in a research project whose main 
+            focus is generative adversarial networks. The goal is to bring ourselves up to date
+            in current GAN research and to make some contribution or result.
+          </li>
+          <li>
+            <b>Definite Integral Approximator:</b> A C program for numerically 
+            approximating definite integrals. The method of integration
+            is Simpson's rule. Some notable features include a custom tokenizer / parser,
+            adaptive mesh size, and the ability to integrate in <i>n</i> dimensions.
+            <ul>
+              <li><a href="https://github.com/ggolish/DefiniteIntegralApproximator" target="_blank">Project Source</a></li>
+              <li><a href="resources/definite-integrator-docs.pdf" target="_blank">Documentation</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Simpson%27s_rule" target="_blank">Simpson's Rule</a></li>
+            </ul>
+          </li>
+          <li>
+            <b>NEATpy:</b> A Python 3 package for evolving neural networks 
             using the NEAT algorithms. This project features an original 
             implementation of NEAT written in C++. This implementation is used 
             as the back end code for a simple to use Python 3 front end. This 
@@ -92,19 +111,36 @@
             </ul>
           </li>
           <li>
-            <b>netmon / netrans</b>: <code>netmon</code> and 
+            <b>netmon / netrans:</b> <code>netmon</code> and 
             <code>netrans</code> are a pair of projects that I completed during
             a graduate network programming course in the fall of 2018.
             <code>netmon</code> is a network monitor with a <code>curses</code>
             display. It monitors a raw socket and displays information 
             about network traffic. <code>netrans</code> is a simple file 
             transfer protocol written from scratch with my own packet scheme. 
-            This project is partially incomplete.
             <ul>
               <li><a href="https://github.com/ggolish/netmon" target="_blank">
                   netmon Source</a></li>
               <li><a href="https://github.com/ggolish/netrans" target="_blank">
                   netrans Source</a></li>
+            </ul>
+          </li>
+          <li>
+            <b>EXT2 I/O Library:</b> A C library for reading and writing files 
+            directly to and from an EXT2 file system. Rigorously follows the EXT2 
+            standard documentation to work on any general EXT2 filesystem. Written
+            in the fall of 2017 for an operating systems class.
+            <ul>
+              <li><a href="https://github.com/ggolish/EXT2" target="_blank">Project Source</a></li>
+            </ul>
+          </li>
+          <li>
+            <b>Text Compressor:</b> A C program that compresses plaintext 
+            files. The algorithms used are Huffman coding, move-to-front transform, and the 
+            Burrows-Wheeler transform.
+            <ul>
+              <li><a href="https://github.com/ggolish/SimpleCompressor" target="_blank">Project Source</a></li>
+            </ul>
           </li>
         </ul>
       </div>
