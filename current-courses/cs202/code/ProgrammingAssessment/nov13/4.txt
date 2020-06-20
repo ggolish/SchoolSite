@@ -1,0 +1,14 @@
+   int total(bst_node_t *root) {
+     if (root == NULL) return 0;
+
+     int saveValue = total(root->left);
+     
+     int saveValue2 = total(root->right);
+
+     // is this node one to count
+     int count = 0;
+     if (root->left != NULL && root->right != NULL)
+       count++;
+
+     return count + saveValue + saveValue2;
+   }

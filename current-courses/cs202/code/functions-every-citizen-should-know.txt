@@ -1,0 +1,67 @@
+- file streams (stdio) -
+fclose
+fgetc
+fopen
+fprintf
+fputc
+fread
+fwrite
+fscanf
+fseek
+getchar
+printf
+putchar
+scanf
+fstat
+
+- strings -
+strcasecmp
+strcat
+strcmp
+strcpy
+strlen
+
+- file system calls -
+close
+open
+read
+write
+lseek
+unlink
+stat
+
+- process management -
+execve
+fork
+getpid
+getuid
+wait
+
+- threads -
+pthread_create
+pthread_exit
+pthread_join
+pthread_mutex_init
+pthread_mutex_lock
+pthread_mutex_unlock
+
+- syncrhonization / shared memory -
+sem_init
+sem_post
+sem_wait
+shm_open
+shm_unlink
+
+- other -
+free
+malloc
+memcpy
+memset
+realloc
+
+sleep
+time
+usleep
+
+random
+srandom

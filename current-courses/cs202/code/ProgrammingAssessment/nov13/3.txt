@@ -1,0 +1,7 @@
+   // initialize some variables
+   int prev = 0;
+   for(ptr = head; ptr != NULL; ptr = ptr->next) {
+     if (ptr == head || prev > ptr->data) printf("%d\n", ptr->data);
+     
+     prev = ptr->data;
+   }

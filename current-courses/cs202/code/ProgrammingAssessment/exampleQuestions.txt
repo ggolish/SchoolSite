@@ -1,0 +1,276 @@
+See also http://cs.indstate.edu/info/policies.html#assessment
+
+Note - working programs for some of these problems are in the test/ directory
+within the current directory.  You can run these on other inputs to test
+yours to see if you're right.
+
+1. Just a loop and if's.
+
+1a) Print the perfect cubes up to 1000 (1, 8, 27, ...).
+
+1b) Add the even perfect cubes up to 1000.
+
+1c) Multiply together the odds up to 15 (1*3*...*15).
+
+1d) Print the powers of 2 from the 30th power down to 1.
+
+1e) Print a line with 25 a's.
+
+1f) Print an alphabet triangle like
+    a
+    bb
+    ccc
+    ...
+    (up to 26 z's)
+
+1g) Print a 7x11 rectange of +'s, using only nested for loops.
+    +++++++++++
+    +++++++++++
+    +++++++++++
+    +++++++++++
+    +++++++++++
+    +++++++++++
+    +++++++++++
+
+1h) Compute 3 to the 10th power.
+
+
+
+2. Scan stdin character by character.
+
+2a) Print each word on its own line (and do not print blank lines).
+
+2b) Print without punctuation.
+
+2c) Print without vowels (niether upper nor lower case, count y as a consonant).
+
+2d) Count # of vowels and consonants (count y as a consonant).
+
+2e) Print with *'s in place of t, h, and e (replace both upper and lower case).
+
+2f) Count # of lines, words, and characters.
+
+2g) Print ... in place of .
+
+2h) Print with @ in place of a, 1 in place of i and l, 4 in place of r.
+    Do replacement for both upper and lower case.
+
+
+3.  Linked list questions.
+
+Suppose we have
+
+typedef struct node {
+  int number;
+  struct node *link;
+} NODE;
+
+NODE * head, * ptr;
+// linked list filled in at some point.
+
+Give code to do the following ...  If you are practicing then do it
+on paper, or type in pico or nano (so your editor is not helping you to debug).
+
+3a) Count the number of positive, negative, and 0 entries in the linked list, and print the totals.
+
+3b) Print the smallest and second smallest numbers in the list.
+
+3c) Remove the first two nodes from the list (including freeing memory, assume there are at least 2 nodes in the list)
+
+3d) Loop through the list and remove all nodes that are negative (including freeing memory).
+
+3e) Print the list in reverse order (tail first).
+// Answer
+/*
+  // first get the tail.
+  NODE * lookFor = NULL;
+  while (lookFor != head) {
+      NODE * thing = NULL;
+      for(ptr = head; ptr != lookFor; ptr = ptr->link) {
+      thing = ptr;
+    }
+    // print thing
+    lookFor = thing;
+  }
+  // what about the head?
+*/
+
+
+4. Binary search tree questions.
+
+Assume you have the following types defined.
+
+typedef struct WORD_T {
+  char *w;   // space for the word
+  int l;     // length of w, so we don't have to recompute
+  int count; // for frequency counts
+} word_t;
+
+typedef struct BST_NODE_T {
+  word_t * data;
+  struct BST_NODE_T *left, *right;
+} bst_node_t;
+
+4a) Write a function name height that has the root of a binary tree as
+parameter, and which returns the height of the tree (maximum length from
+root to a leaf).
+
+4b) Write a function named maxCount that has the root of a binary tree as
+a parameter, and returns a pointer to the node with maximal data->count.
+
+4c) Write a function named countFull that has the root of a binary tree as
+a parameter, and returns the number of nodes in the tree that have both
+left and right children.
+
+4d) Write a function named byLevel that has the root of a binary tree as
+a parameter, and prints the nodes in the tree by level (first the root,
+then the children of the root, then the nodes at height 2, etc.).  You
+should print the word and count.
+
+4e) Write a function named first that has the root of a binary tree as
+parameter, and returns a pointer to the node with the "smallest" word
+(first in dictionary order).  Assume that left children are smaller than
+their parent, and right children are larger.
+
+4f) Write a function named lookup that has the root of a bniary tree as
+parameter, has a C string as a parameter, and returns a pointer to the
+node where the string appears (or NULL if not present).
+
+4g) Write a function named totalHeight that has the root of a binary tree
+as parameter and returns the sum of the heights of all nodes in the
+tree.  The root has height 0.
+
+
+
+5.  Function, playing with bits.
+
+Create a function that does the following, and create a main program that
+takes arguments from the command line, applies the function, and prints the result.
+
+5a0) One argument, an unsigned integer x.  Print x in hex, x /16 in hex, etc.
+
+Examples -
+
+./a.out 42
+  2a
+  2
+./a.out 1000000
+  f4240
+  f424
+  f42
+  f4
+  f
+
+5a1) Two arguments, unsigned integers x and y.  Print x AND y, x OR y, x XOR y,
+and the max of these.
+
+Examples -
+./5a1 10 15
+  (OR, AND, XOR) = (15, 10, 5)
+  OR
+./5a1 42 36
+  (OR, AND, XOR) = (46, 32, 14)
+  OR
+
+5a2) One argument, an unsigned integer x given in hex.  Compute the unsigned integer that
+results from swapping the odd and even bytes in x.  Print it in hex and decimal.
+
+Examples -
+
+./a.out 0x00123456
+  0x12005634
+  302011956
+./a.out 0x12
+  0x00001200
+  4608
+./a.out 0x1
+  0x00000100
+  256
+./a.out 123
+  0x00002301
+  8961
+
+5a) One argument, an unsigned integer.  Compute the number of 1 bits in its binary
+representation, and compute the decimal number having that many 1 bits in the least
+significant bits.
+
+Examples -
+
+./a.out 12
+  3
+./a.out 9
+  3
+./a.out 14
+  7
+./a.out 42
+  7
+
+5b) One argument, an unsigned integer.  Compute the binary representation of the
+number and print - in place of 0's and * in place of 1's.
+
+Examples -
+./a.out 12
+  **--
+./a.out 9
+  *--*
+./a.out 14
+  ***-
+./a.out 42
+  *-*-*-
+
+5c) One argument, a hexadecimal integer.  Compute how many of the bytes in the
+hexadecimal integer are not 0 (out of a total of sizeof(int)).  Remember that each
+byte is two hexadecimal digits.
+
+Examples -
+./a.out 0x1
+  1
+./a.out 0x12
+  1
+./a.out 0x10e0
+  2
+./a.out 0x123456
+  3
+./a.out 0xfedcb00
+  3
+
+5d) One argument, an unsigned integer.  Print the integer as a hexadecimal
+integer and compute the maximum hexadecimal digit
+in the integer's hexadecimal representation.  Remember that each hexadecimal
+digit is 4 bits and 1/2 of a byte.
+
+./a.out 10
+  a
+  a
+./a.out 8
+  8
+  8
+./a.out 128
+  80
+  8
+./a.out 1024
+  400
+  4
+./a.out 91
+  5b
+  b
+./a.out 1000000
+  f4240
+  f
+./5d 42
+  2a
+  a
+
+5e) One argument, an integer.  Print the number as a hexadecimal number, and
+print the base 16 formula for the number.
+
+Examples -
+./a.out 42
+  2a
+  2 * 16 + 15 * 1
+./a.out 91
+  5b
+  5 * 16 + 11 * 1
+./a.out 1000000
+  f4240
+  15 * 65536 + 4 * 4096  + 2 * 256 + 4 * 16 + 0 * 1
